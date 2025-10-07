@@ -1,4 +1,36 @@
-Öğrenci No:
-AD-SOYAD:
+Öğrenci No: 250541022
+AD-SOYAD: Elif BABÜRHAN
 
-Lütfen seçtiğiniz algoritmaya ait çözümü ve diğer isterleri aşağıya ekleyiniz:
+
+🛒 Optimum bütçeli market alışverişi  
+
+Başla
+Bütçeyi belirle → butce
+Alışveriş listesi oluştur → [ekmek, süt, yumurta, peynir, meyve, sebze, çikolata]
+Toplam = 0
+
+Her ürün için (ürün in alışveriş listesi):
+    Ürün fiyatını gir → fiyat
+    Eğer (Toplam + fiyat) ≤ butce ise:
+        Ürünü sepete ekle
+        Toplam = Toplam + fiyat
+        Yazdır "✅ {ürün} sepete eklendi."
+    Değilse:
+        Yazdır "❌ {ürün} bütçeyi aşıyor, alınmadı."
+    Eğer (Toplam == butce) ise:
+        Yazdır "Bütçe tamamen kullanıldı!"
+        Döngüden çık
+
+Döngü bittiğinde:
+    Yazdır "Toplam harcama: {Toplam}"
+    Yazdır "Kalan bütçe: {butce - Toplam}"
+Bitir
+
+--- Farklı Çözüm Versiyonları ---
+1. Basit Döngü ile Çözüm: Ürünleri sırayla ekler, bütçeyi kontrol eder.
+2. Önceliklendirme: Önce gerekli ürünleri ekleyip lüksleri sonra kontrol eder.
+3. Optimize Etme: Tüm kombinasyonları deneyip maksimum ürün alacak şekilde bütçeyi kullanır.
+
+--- LLM ile Konuşma Geçmişi ---
+Kullanıcı: Koşullar ve döngüler içeren bir algoritma yazın.  
+ChatGPT: "Optimum bütçeli market alışverişi" örneğini önerdi ve sözde kodu adım adım hazırladı.
