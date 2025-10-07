@@ -1,4 +1,42 @@
-Öğrenci No:
-AD-SOYAD:
+Öğrenci No: 250541022
+AD-SOYAD: Elif BABÜRHAN
 
-Lütfen seçtiğiniz algoritmaya ait çözümü ve diğer isterleri aşağıya ekleyiniz:
+
+📚 Kütüphanede kitap arama sistemi  
+
+Başla
+Kütüphane veritabanı oluştur → kitaplar = [
+    {isim: "Kitap A", yazar: "Yazar 1", kategori: "Roman"},
+    {isim: "Kitap B", yazar: "Yazar 2", kategori: "Bilim"},
+    {isim: "Kitap C", yazar: "Yazar 3", kategori: "Tarih"},
+    ...
+]
+
+Kullanıcıdan arama tipi seç → arama_tipi (isim/yazar/kategori)
+Kullanıcıdan arama kelimesi al → arama_kelimesi
+Sonuçlar = boş liste
+
+Her kitap için (kitap in kitaplar):
+    Eğer arama_tipi == "isim" ve arama_kelimesi kitap.isim içinde ise:
+        Sonuçlar'a ekle kitap
+    Değilse eğer arama_tipi == "yazar" ve arama_kelimesi kitap.yazar içinde ise:
+        Sonuçlar'a ekle kitap
+    Değilse eğer arama_tipi == "kategori" ve arama_kelimesi kitap.kategori içinde ise:
+        Sonuçlar'a ekle kitap
+
+Eğer Sonuçlar boş ise:
+    Yazdır "Aradığınız kitap bulunamadı."
+Değilse:
+    Yazdır "Bulunan kitaplar:"
+    Her kitap için (kitap in Sonuçlar):
+        Yazdır kitap.isim, kitap.yazar, kitap.kategori
+Bitir
+
+--- Farklı Çözüm Versiyonları ---
+1. Linear Search: Basit ve küçük veri setleri için uygun.
+2. Binary Search: Kitaplar alfabetik sıralıysa hızlı arama.
+3. Kategori Tablo ile Arama: Kategorilere göre önceden filtreleme.
+
+--- LLM ile Konuşma Geçmişi ---
+Kullanıcı: Veri sıralama, düzenleme veya arama algoritması yaz.  
+ChatGPT: "Kütüphanede kitap arama sistemi"ni seçip adım adım sözde kodu hazırladı.
