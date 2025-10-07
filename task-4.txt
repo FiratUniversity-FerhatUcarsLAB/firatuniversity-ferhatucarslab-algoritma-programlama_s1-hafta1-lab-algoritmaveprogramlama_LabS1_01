@@ -1,4 +1,33 @@
-Öğrenci No:
-AD-SOYAD:
+Öğrenci No: 250541022
+AD-SOYAD: Elif BABÜRHAN
 
-Lütfen seçtiğiniz algoritmaya ait çözümü ve diğer isterleri aşağıya ekleyiniz:
+
+✏️ İki büyük sayıyı kağıt-kalemle çarpma  
+
+Başla
+Fonksiyon Carp(x, y):
+    Eğer x veya y tek basamaklı ise:
+        Döndür x * y
+    
+    n = max(basamak sayısı x ve y)
+    m = n / 2
+
+    x = a * 10^m + b
+    y = c * 10^m + d
+
+    z0 = Carp(b, d)
+    z1 = Carp((a + b), (c + d))
+    z2 = Carp(a, c)
+
+    Döndür z2 * 10^(2*m) + (z1 - z2 - z0) * 10^m + z0
+Bitir
+
+--- Farklı Çözüm Versiyonları ---
+1. Klasik Çarpma: O(n^2), küçük sayılar için hızlı.
+2. Karatsuba: O(n^1.585), büyük sayılarda daha verimli.
+3. Divide & Conquer: Rekürsif bölme ile optimize edilebilir.
+
+--- LLM ile Konuşma Geçmişi ---
+Kullanıcı: Böl ve fethet yaklaşımıyla karmaşık bir problem çöz.  
+ChatGPT: "İki büyük sayıyı kağıt-kalemle çarpma"yı seçip Karatsuba algoritmasını önerdi.
+
