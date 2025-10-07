@@ -1,4 +1,37 @@
-Öğrenci No:
-AD-SOYAD:
+Öğrenci No: 250541022
+AD-SOYAD: Elif BABÜRHAN
 
 Lütfen seçtiğiniz algoritmaya ait çözümü ve diğer isterleri aşağıya ekleyiniz:
+
+☕ İdeal kahve demleme  
+
+Başla
+Kahve türünü seç → espresso, filtre, French press
+Su miktarını belirle → su_miktari
+Kahve miktarını belirle → kahve_miktari
+Su sıcaklığı ayarla → 90-96°C
+Demleme süresi belirle → süre
+
+Eğer kahve türü == espresso ise:
+    Basınç uygula ve kısa süre demle
+Değilse eğer kahve türü == filtre ise:
+    Su yavaşça dök, süreyi 4-5 dakika tut
+Değilse eğer kahve türü == French press ise:
+    Kahveyi suya ekle, karıştır, 4 dakika bekle
+
+Demleme tamamlandığında:
+    Kahveyi süz
+    Tadına bak
+    Eğer tat dengeli değilse:
+        Kahve-su oranını veya demleme süresini ayarla
+Bitir
+
+--- Farklı Çözüm Versiyonları ---
+1. Espresso: Hızlı, yoğun aroma.
+2. Filtre Kahve: Yavaş demleme, hafif aroma.
+3. French Press: Orta yoğunluk, telve ile servis.
+4. Parametre Ayarlama: Su miktarı, kahve oranı ve süreye göre tat optimize edilir.
+
+--- LLM ile Konuşma Geçmişi ---
+Kullanıcı: Üretken algoritma projesi, özgün problem seçip çözüm algoritması geliştir.  
+ChatGPT: "İdeal kahve demleme" seçildi, adım adım sözde kod ve farklı yöntemler hazırlandı.
