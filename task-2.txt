@@ -1,4 +1,46 @@
-Öğrenci No:
-AD-SOYAD:
+Öğrenci No: 250541022
+AD-SOYAD: Elif BABÜRHAN
 
-Lütfen seçtiğiniz algoritmaya ait çözümü ve diğer isterleri aşağıya ekleyiniz:
+
+❌⭕ Tic-Tac-Toe kazanma stratejisi  
+
+Başla
+Tahtayı oluştur → 3x3 matris boş
+Kendi sembolünü belirle → X
+Rakibin sembolünü belirle → O
+
+Her hamle için:
+    Eğer kazanma hamlesi varsa (2 X + 1 boş):
+        Boş kareye X koy
+        Yazdır "Kazanmak için hamle yapıldı"
+    Değilse eğer rakip kazanacaksa (2 O + 1 boş):
+        Boş kareye X koyarak engelle
+        Yazdır "Rakip kazanmasını engelledik"
+    Değilse eğer köşe boşsa:
+        Rastgele boş köşeye X koy
+        Yazdır "Köşe seçildi"
+    Değilse orta kare boşsa:
+        Orta kareye X koy
+        Yazdır "Orta seçildi"
+    Değilse:
+        Rastgele boş kare seç
+        Yazdır "Rastgele boş kare seçildi"
+
+    Rakip hamle yapar → O koyar
+    Eğer rakip kazanırsa:
+        Yazdır "Oyun bitti, rakip kazandı"
+        Bitir
+    Eğer tüm kareler dolduysa:
+        Yazdır "Oyun berabere"
+        Bitir
+Döngü devam eder
+Bitir
+
+--- Farklı Çözüm Versiyonları ---
+1. Rastgele Hamle: Basit, kazanma garantisi yok.
+2. Stratejik Hamle: Köşe ve orta kare önceliği, kazanma/engelleme mantığı.
+3. Minimax Algoritması: Tüm hamleleri simüle eder, optimal strateji sağlar.
+
+--- LLM ile Konuşma Geçmişi ---
+Kullanıcı: Bir oyunda karar verme ve rakip hamlelerini öngören algoritma yaz.  
+ChatGPT: "Tic-Tac-Toe kazanma stratejisi"ni önerdi ve adım adım sözde kod hazırladı.
