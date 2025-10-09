@@ -1,4 +1,71 @@
-Öğrenci No:
-AD-SOYAD:
+Öğrenci No:250541018
+AD-SOYAD:Edanur yasak
 
 Lütfen seçtiğiniz algoritmaya ait çözümü ve diğer isterleri aşağıya ekleyiniz:
+BAŞLA
+
+1. Malzemeleri hazırla:
+   - Yumurta (3 adet)
+   - Domates (3 adet)
+   - Yeşil biber (2 adet)
+   - Tereyağı veya zeytinyağı (2 yemek kaşığı)
+   - Tuz, karabiber, isteğe bağlı pul biber
+   - (Opsiyonel) Soğan (1 adet)
+   - (Opsiyonel) Peynir (bir avuç kadar)
+
+2. Kullanıcıdan sor:
+   "Menemene soğan eklensin mi?" → soğan_isteği AL
+   "Peynir eklensin mi?" → peynir_isteği AL
+
+3. Tavayı ısıt:
+   YAĞI tavaya koy
+   BEKLE 30 saniye
+   EĞER yağ cızırdamaya başladıysa → DEVAM ET
+   DEĞİLSE ısıyı biraz artır ve tekrar kontrol et
+
+4. Eğer soğan_isteği == "Evet" ise:
+      Soğanları küçük küçük doğra
+      Tavaya ekle
+      Soğanlar pembeleşene kadar karıştır (yaklaşık 2-3 dakika)
+
+5. Biberleri doğra
+   Tavaya ekle
+   Biberler yumuşayana kadar 2-3 dakika karıştır
+
+6. Domatesleri doğra
+   Tavaya ekle
+   5 dakika boyunca karıştırarak pişir
+   WHILE (domates su salmaya devam ediyor):
+         Ara ara karıştır
+         DOMATES suyu azalana kadar pişirmeye devam et
+
+7. EĞER karışım çok suluysa:
+        Biraz daha pişir
+   DEĞİLSE DEVAM ET
+
+8. Yumurtaları kırmadan önce kullanıcıya sor:
+   "Yumurtalar karıştırılsın mı yoksa bütün kalsın mı?" → tercih AL
+
+   EĞER tercih == "karıştır":
+         Yumurtaları bir kapta çırp
+         Tavaya dök ve karıştırarak pişir
+   DEĞİLSE:
+         Yumurtaları direkt tavaya kır
+         Beyazlar pişene kadar bekle
+
+9. Tuz ve baharatları ekle (isteğe göre)
+
+10. EĞER peynir_isteği == "Evet" ise:
+         Peynir ekle
+         Peynir eriyene kadar 1-2 dakika karıştır
+
+11. Menemenin kıvamını kontrol et:
+         EĞER karışım çok katıysa → biraz domates suyu veya su ekle
+         EĞER çok suluysa → birkaç dakika daha pişir
+
+12. Tadına bak:
+         EĞER lezzet istenilen düzeydeyse → SERVİS ET
+         DEĞİLSE → baharat veya tuz ayarı yap ve 1 dakika daha pişir
+
+BİTİR
+
