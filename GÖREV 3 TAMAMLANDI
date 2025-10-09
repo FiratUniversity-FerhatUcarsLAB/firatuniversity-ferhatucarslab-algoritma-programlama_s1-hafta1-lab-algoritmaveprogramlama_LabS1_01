@@ -1,0 +1,89 @@
+Öğrenci No:250541018
+AD-SOYAD:Edanur YASAK
+
+Lütfen seçtiğiniz algoritmaya ait çözümü ve diğer isterleri aşağıya ekleyiniz:
+BAŞLA
+
+1. Rehberi boş bir liste olarak oluştur:
+   REHBER ← []
+
+2. Sonsuz döngü başlat:
+   WHILE TRUE:
+        EKRANA yaz:
+        "1- Yeni kişi ekle"
+        "2- Kişi sil"
+        "3- Kişi ara"
+        "4- Rehberi sırala (Ada göre)"
+        "5- Rehberi görüntüle"
+        "6- Çıkış"
+        "Seçiminizi girin: "
+        
+        SECIM ← kullanıcıdan oku
+
+        # --- KOŞULLU DURUMLAR ---
+
+        EĞER SECIM == 1 ise:
+             # --- Kişi ekleme ---
+             YENI_AD ← kullanıcıdan oku("Ad: ")
+             YENI_SOYAD ← kullanıcıdan oku("Soyad: ")
+             YENI_TEL ← kullanıcıdan oku("Telefon numarası: ")
+
+             # Aynı numara var mı kontrol et
+             VAR_MI ← FALSE
+             FOR KISI in REHBER:
+                  EĞER KISI.TEL == YENI_TEL ise:
+                       VAR_MI ← TRUE
+                       DUR
+             EĞER VAR_MI == TRUE ise:
+                  EKRANA yaz "Bu numara zaten kayıtlı!"
+             DEĞİLSE:
+                  REHBER'e (YENI_AD, YENI_SOYAD, YENI_TEL) ekle
+                  EKRANA yaz "Kişi başarıyla eklendi."
+
+        EĞER SECIM == 2 ise:
+             # --- Kişi silme ---
+             SILINECEK_TEL ← kullanıcıdan oku("Silinecek telefon numarası: ")
+             BULUNDU ← FALSE
+             FOR KISI in REHBER:
+                  EĞER KISI.TEL == SILINECEK_TEL ise:
+                       REHBER'den KISI'yi sil
+                       BULUNDU ← TRUE
+                       EKRANA yaz "Kişi silindi."
+                       DUR
+             EĞER BULUNDU == FALSE ise:
+                  EKRANA yaz "Kişi bulunamadı."
+
+        EĞER SECIM == 3 ise:
+             # --- Kişi arama ---
+             ARAMA ← kullanıcıdan oku("Aramak istediğiniz ad veya soyad: ")
+             BULUNDU ← FALSE
+             FOR KISI in REHBER:
+                  EĞER ARAMA küçük harflerle KISI.AD içinde varsa VEYA ARAMA küçük harflerle KISI.SOYAD içinde varsa:
+                       EKRANA yaz "Ad: ", KISI.AD, " Soyad: ", KISI.SOYAD, " Tel: ", KISI.TEL
+                       BULUNDU ← TRUE
+             EĞER BULUNDU == FALSE ise:
+                  EKRANA yaz "Eşleşen kişi bulunamadı."
+
+        EĞER SECIM == 4 ise:
+             # --- Rehberi sıralama ---
+             REHBER'i KISI.AD'ye göre alfabetik sırala
+             EKRANA yaz "Rehber ada göre sıralandı."
+
+        EĞER SECIM == 5 ise:
+             # --- Rehberi görüntüleme ---
+             EĞER REHBER boş ise:
+                  EKRANA yaz "Rehber boş."
+             DEĞİLSE:
+                  SIRA ← 1
+                  FOR KISI in REHBER:
+                       EKRANA yaz SIRA, "-", KISI.AD, KISI.SOYAD, ":", KISI.TEL
+                       SIRA ← SIRA + 1
+
+        EĞER SECIM == 6 ise:
+             EKRANA yaz "Program sonlandırılıyor..."
+             DÖNGÜDEN ÇIK
+
+        DEĞİLSE:
+             EKRANA yaz "Geçersiz seçim, lütfen 1-6 arasında bir değer girin."
+
+BİTİR
