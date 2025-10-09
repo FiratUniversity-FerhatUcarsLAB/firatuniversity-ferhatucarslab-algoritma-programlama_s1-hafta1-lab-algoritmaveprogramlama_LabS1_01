@@ -1,4 +1,125 @@
-Öğrenci No:
-AD-SOYAD:
+Öğrenci No:250541077
+AD-SOYAD:Ülkü Tuanna Kara
 
 Lütfen seçtiğiniz algoritmaya ait çözümü ve diğer isterleri aşağıya ekleyiniz:
+
+// Girdi
+CONSTANT MAX_BUDGET = 500.00 // Kullanıcının maksimum bütçesi (Örn: 500 TL)
+ARRAY ShoppingList OF String = ["Süt", "Ekmek", "Peynir", "Elma", "Tavuk"] // Gerekli ürünler
+STRUCT ProductOffer
+    String name
+    Float price
+    String store
+    Boolean isOrganic // Ekstra maliyet/kalite koşulu için
+END STRUCT
+
+// Simüle Edilmiş Fiyat Veritabanı (Örn: 3 farklı marketten teklifler)
+ARRAY PricesDatabase OF ProductOffer = [
+    {"Süt", 25.50, "Market A", FALSE},
+    {"Süt", 29.90, "Market B", FALSE},
+    {"Ekmek", 7.00, "Market C", FALSE},
+    {"Ekmek", 8.50, "Market A", FALSE},
+    {"Peynir", 95.00, "Market C", TRUE},
+    {"Peynir", 80.00, "Market A", FALSE},
+    {"Elma", 15.00, "Market B", FALSE},
+    // ... Diğer ürünler ve fiyatları ...
+]
+
+// Çıktı ve Durum
+ARRAY FinalBasket OF ProductOffer // Sepete eklenen nihai ürünler
+Float CurrentTotalCost = 0.00 // Toplam maliyet
+FUNCTION OptimizeBudgetShopping()
+    // 1. Durumların Başlatılması
+    CurrentTotalCost = 0.00
+    FinalBasket = EmptyArray()
+
+    // 2. Alışveriş Listesindeki Her Ürün İçin DÖNGÜ
+    FOR each requiredItem IN ShoppingList DO
+
+        // 3. Geçerli Ürün İçin En İyi Teklifi Bul
+        ProductOffer bestOffer = NULL // En iyi teklif başlangıçta boş
+        Float minPrice = Infinity // Minimum fiyat başlangıçta sonsuz
+
+        // Fiyat Veritabanındaki Her Teklif İçin DÖNGÜ
+        FOR each offer IN PricesDatabase DO
+            // KOŞUL 1: İstenen Ürün mü?
+            IF offer.name == requiredItem THEN
+                
+                // KOŞUL 2: Bütçe Kontrolü (Bu ürünü alırsak bütçeyi aşacak mıyız?)
+                IF (CurrentTotalCost + offer.price) <= MAX_BUDGET THEN
+
+                    // KOŞUL 3: Minimum Fiyat Kontrolü
+                    IF offer.price < minPrice THEN
+                        minPrice = offer.price
+                        bestOffer = offer
+                    // EK KOŞUL: Fiyatlar eşitse, organik olmayan (genellikle daha temel) ürünü tercih et
+                    ELSE IF (offer.price == minPrice) AND (offer.isOrganic == FALSE) AND (bestOffer.isOrganic == TRUE) THEN
+                        minPrice = offer.price
+                        bestOffer = offer
+                    END IF
+                END IF
+            END IF
+        END FOR
+
+        // 4. Nihai Karar ve Sepete Ekleme
+        IF bestOffer IS NOT NULL THEN
+            // Ürünün en ucuz teklifi bulundu ve bütçe dahilinde
+            ADD bestOffer TO FinalBasket
+            CurrentTotalCost = CurrentTotalCost + bestOffer.price
+            DisplayMessage("Sepete Eklendi: " + bestOffer.name + " (" + bestOffer.store + ", " + bestOffer.price + " TL)")
+        ELSE
+            // Bu ürüne bütçe yetmiyor VEYA hiçbir yerde bulunamıyor.
+            DisplayWarning("Bütçe Yetersiz VEYA Bulunamadı: " + requiredItem)
+            // (İsteğe bağlı: Burada kullanıcıya bu ürünü listeden çıkarma veya daha ucuz bir alternatif arama seçeneği sunulabilir.)
+        END IF
+        
+    END FOR // Alışveriş Listesi Döngüsü Sonu
+
+    // 5. Sonuçların Gösterilmesi
+    DisplayOutput("---------------------------------------")
+    DisplayOutput("Nihai Toplam Maliyet: " + CurrentTotalCost + " TL")
+    DisplayOutput("Kalan Bütçe: " + (MAX_BUDGET - CurrentTotalCost) + " TL")
+    DisplayOutput("Sepet İçeriği: ")
+    FOR each item IN FinalBasket DO
+        DisplayOutput("- " + item.name + " @ " + item.store)
+    END FOR
+
+END FUNCTION
+// Opsiyonel Liste: Sadece Bütçe Varsa Alınacaklar
+ARRAY OptionalItems = ["Çikolata", "Özel İndirimli Deterjan"] 
+
+FUNCTION OptionalPurchaseCheck()
+    DisplayOutput("---------------------------------------")
+    DisplayOutput("OPSİYONEL ALIM KONTROLÜ BAŞLADI...")
+    
+    // WHİLE DÖNGÜSÜ: Bütçe yettiği sürece ve opsiyonel liste boş değilse devam et
+    WHILE (CurrentTotalCost < MAX_BUDGET) AND (OptionalItems IS NOT EMPTY) DO
+        
+        // Bu adımda, OptionalItems listesindeki en ucuz ürünü bulduğunuz varsayılır.
+        ProductOffer cheapestOptional = FindCheapestOffer(OptionalItems) // Simüle edilmiş işlev
+        
+        IF cheapestOptional IS NOT NULL THEN
+            // KOŞUL: Opsiyonel ürün mevcut bütçeyi aşmıyor mu?
+            IF (CurrentTotalCost + cheapestOptional.price) <= MAX_BUDGET THEN
+                
+                // Satın al ve sepete ekle
+                ADD cheapestOptional TO FinalBasket
+                CurrentTotalCost = CurrentTotalCost + cheapestOptional.price
+                REMOVE cheapestOptional FROM OptionalItems // Listeden çıkar
+                DisplayMessage("Opsiyonel Eklendi: " + cheapestOptional.name + " (" + cheapestOptional.price + " TL)")
+            ELSE
+                // Bütçemiz kaldı ama kalan miktar en ucuz opsiyoneli almaya yetmiyor
+                DisplayWarning("Kalan bütçe, opsiyonel ürünleri almaya yetmiyor.")
+                BREAK // Döngüden çık
+            END IF
+        ELSE
+            // Opsiyonel listede ürün kalmadı
+            BREAK
+        END IF
+        
+    END WHILE
+    
+    // Sonuçların Tekrar Gösterilmesi
+    DisplayOutput("Nihai Toplam Maliyet: " + CurrentTotalCost + " TL")
+    
+END FUNCTION
