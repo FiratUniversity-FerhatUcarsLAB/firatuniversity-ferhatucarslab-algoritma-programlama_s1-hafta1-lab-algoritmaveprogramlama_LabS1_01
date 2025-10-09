@@ -1,4 +1,59 @@
-Öğrenci No:
-AD-SOYAD:
+Öğrenci No:250542017
+AD-SOYAD:İsmet Mert Uysal
 
 Lütfen seçtiğiniz algoritmaya ait çözümü ve diğer isterleri aşağıya ekleyiniz:
+
+ALGORITMA Sınav_Çalışma_Planı_Olustur
+
+GİRİŞ:
+    topics[], difficulty[], importance[], days_remaining, daily_hours, exam_date
+
+BAŞLA
+
+1. toplam_konular ← UZUNLUK(topics)
+2. HER konu i İÇİN 1 → toplam_konular
+       konu_puanı[i] ← (difficulty[i] + importance[i]) / 2
+   SON
+
+3. toplam_puan ← TOPLAM(konu_puanı)
+
+4. HER konu i İÇİN 1 → toplam_konular
+       konu_çalışma_oranı[i] ← konu_puanı[i] / toplam_puan
+   SON
+
+5. HER konu i İÇİN 1 → toplam_konular
+       konu_toplam_süre[i] ← konu_çalışma_oranı[i] * days_remaining * daily_hours
+   SON
+
+6. GÜN ← 1
+7. WHILE GÜN ≤ days_remaining YAP
+       günlük_kalan_saat ← daily_hours
+       GÜNLÜK_PLAN[GÜN] ← boş
+
+       // O gün hangi konular çalışılacak
+       HER konu i İÇİN 1 → toplam_konular
+           EĞER konu_toplam_süre[i] > 0 VE günlük_kalan_saat > 0 İSE
+               çalış_süre ← MİN(2, konu_toplam_süre[i], günlük_kalan_saat)
+               EKLE(GÜNLÜK_PLAN[GÜN], (topics[i], çalış_süre))
+               konu_toplam_süre[i] ← konu_toplam_süre[i] - çalış_süre
+               günlük_kalan_saat ← günlük_kalan_saat - çalış_süre
+           SON
+       SON
+
+       GÜN ← GÜN + 1
+   SON
+
+8. // Gözden geçirme günleri ekle
+   EĞER days_remaining > 5 İSE
+       HER 5. gün İÇİN
+           EKLE(GÜNLÜK_PLAN[5*k], ("Tüm konulardan tekrar", daily_hours))
+       SON
+   SON
+
+
+9. ÇIKTI study_plan ← GÜNLÜK_PLAN
+
+YAZDIR("Sınav Çalışma Planı Oluşturuldu!")
+DÖNDÜR study_plan
+
+BİTİR
