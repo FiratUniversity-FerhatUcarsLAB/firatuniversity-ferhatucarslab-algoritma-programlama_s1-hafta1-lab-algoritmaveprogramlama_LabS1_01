@@ -1,4 +1,0 @@
-Öğrenci No:
-AD-SOYAD:
-
-Lütfen seçtiğiniz algoritmaya ait çözümü ve diğer isterleri aşağıya ekleyiniz:
