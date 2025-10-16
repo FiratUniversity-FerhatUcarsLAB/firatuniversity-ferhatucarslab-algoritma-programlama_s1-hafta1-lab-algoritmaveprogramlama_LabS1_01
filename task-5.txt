@@ -1,4 +1,435 @@
-Öğrenci No:
-AD-SOYAD:
+Öğrenci No:250542014
+AD-SOYAD:Yiğit Alper Ayhan
 
-Lütfen seçtiğiniz algoritmaya ait çözümü ve diğer isterleri aşağıya ekleyiniz:
+İdeal çay demleme algoritması için adım adım algoritma geliştirmek istiyorum. Koşullu durumları ve tekrar eden işlemleri de içeren detaylı bir pseudocode yazmama yardım eder misin?
+
+Elbette! İdeal çay demleme süreci için ayrıntılı bir algoritma oluşturmak oldukça keyifli ve öğretici olabilir. Burada hem koşullu durumları (örneğin: suyun kaynaması, yeterli miktarda çay olup olmaması) hem de tekrar eden işlemleri (örneğin: suyun kaynamasını bekleme) içeren bir pseudocode (sözde kod) yazacağız.
+
+🎯 Amaç:
+
+İdeal şekilde siyah çay demlemek.
+
+💡 Varsayımlar:
+Çaydanlık iki parçalı: alt hazne (su), üst hazne (çay).
+Gereken malzemeler: su, kuru siyah çay, çaydanlık, ocak.
+Suyun kaynaması zaman alır.
+Demleme süresi idealdir (örneğin 15 dakika).
+Gözlem gerekebilir (koşullar kontrol edilir).
+
+🧠 Pseudocode: "İdeal Çay Demleme Algoritması"
+BAŞLA
+
+// 1. MALZEMELERİ KONTROL ET
+Eğer çay mevcut değilse:
+    Yazdır("Çay bulunamadı. Demleme işlemi iptal edildi.")
+    DUR
+Eğer yeterli içme suyu yoksa:
+    Yazdır("Yeterli su yok. Lütfen su ekleyin.")
+    DUR
+
+// 2. MALZEMELERİ HAZIRLA
+AltDemlik = yeni DemlikAlt()
+ÜstDemlik = yeni DemlikÜst()
+SuMiktarı = 1 litre
+CayMiktarı = 2 yemek kaşığı
+
+AltDemlik.suEkle(SuMiktarı)
+ÜstDemlik.kuruCayEkle(CayMiktarı)
+
+// 3. OCAĞI AÇ VE SUYU KAYNAT
+Ocak.ac()
+AltDemlik.ocağaKoy()
+
+Yazdır("Su kaynaması bekleniyor...")
+
+TekeEt:
+    Eğer AltDemlik.suKaynıyorMu() == FALSE ise:
+        30 saniye bekle
+        Git TekeEt
+
+Yazdır("Su kaynadı.")
+
+// 4. KAYNAYAN SUYU ÜST DEMLİĞE DÖK
+AltDemlik.kaynarSuAl(çayDemlemelikSuMiktarı)
+ÜstDemlik.suEkle(kaynarSu)
+ÜstDemlik.ocağaKoy()
+
+// 5. DEMLİĞİ DEMLENMEYE BIRAK
+DemlenmeSüresi = 15 dakika
+GeçenSüre = 0
+
+TekeEt2:
+    Eğer GeçenSüre < DemlenmeSüresi ise:
+        1 dakika bekle
+        GeçenSüre += 1
+        Git TekeEt2
+
+Yazdır("Çay demlendi.")
+
+// 6. SERVİSE HAZIRLA
+Eğer ÜstDemlik.cayRengi() == "ideal" ise:
+    Yazdır("Çay servise hazır.")
+    DUR
+Aksi halde:
+    Yazdır("Çay yeterince demlenmedi veya aşırı demlendi. Tadı kontrol ediniz.")
+    DUR
+
+BİTİR
+
+Elbette! İdeal çay demleme süreci için ayrıntılı bir algoritma oluşturmak oldukça keyifli ve öğretici olabilir. Burada hem **koşullu durumları** (örneğin: suyun kaynaması, yeterli miktarda çay olup olmaması) hem de **tekrar eden işlemleri** (örneğin: suyun kaynamasını bekleme) içeren bir **pseudocode (sözde kod)** yazacağız.
+
+---
+
+## 🎯 Amaç:
+
+İdeal şekilde siyah çay demlemek.
+
+---
+
+## 💡 Varsayımlar:
+
+* Çaydanlık iki parçalı: alt hazne (su), üst hazne (çay).
+* Gereken malzemeler: su, kuru siyah çay, çaydanlık, ocak.
+* Suyun kaynaması zaman alır.
+* Demleme süresi idealdir (örneğin 15 dakika).
+* Gözlem gerekebilir (koşullar kontrol edilir).
+
+---
+
+## 🧠 Pseudocode: "İdeal Çay Demleme Algoritması"
+
+```pseudocode
+BAŞLA
+
+// 1. MALZEMELERİ KONTROL ET
+Eğer çay mevcut değilse:
+    Yazdır("Çay bulunamadı. Demleme işlemi iptal edildi.")
+    DUR
+Eğer yeterli içme suyu yoksa:
+    Yazdır("Yeterli su yok. Lütfen su ekleyin.")
+    DUR
+
+// 2. MALZEMELERİ HAZIRLA
+AltDemlik = yeni DemlikAlt()
+ÜstDemlik = yeni DemlikÜst()
+SuMiktarı = 1 litre
+CayMiktarı = 2 yemek kaşığı
+
+AltDemlik.suEkle(SuMiktarı)
+ÜstDemlik.kuruCayEkle(CayMiktarı)
+
+// 3. OCAĞI AÇ VE SUYU KAYNAT
+Ocak.ac()
+AltDemlik.ocağaKoy()
+
+Yazdır("Su kaynaması bekleniyor...")
+
+TekeEt:
+    Eğer AltDemlik.suKaynıyorMu() == FALSE ise:
+        30 saniye bekle
+        Git TekeEt
+
+Yazdır("Su kaynadı.")
+
+// 4. KAYNAYAN SUYU ÜST DEMLİĞE DÖK
+AltDemlik.kaynarSuAl(çayDemlemelikSuMiktarı)
+ÜstDemlik.suEkle(kaynarSu)
+ÜstDemlik.ocağaKoy()
+
+// 5. DEMLİĞİ DEMLENMEYE BIRAK
+DemlenmeSüresi = 15 dakika
+GeçenSüre = 0
+
+TekeEt2:
+    Eğer GeçenSüre < DemlenmeSüresi ise:
+        1 dakika bekle
+        GeçenSüre += 1
+        Git TekeEt2
+
+Yazdır("Çay demlendi.")
+
+// 6. SERVİSE HAZIRLA
+Eğer ÜstDemlik.cayRengi() == "ideal" ise:
+    Yazdır("Çay servise hazır.")
+    DUR
+Aksi halde:
+    Yazdır("Çay yeterince demlenmedi veya aşırı demlendi. Tadı kontrol ediniz.")
+    DUR
+
+BİTİR
+```
+
+---
+
+## ⚙️ Açıklamalar:
+
+* `suKaynıyorMu()` gibi fonksiyonlar gerçek hayatta zamanla beklenen işlemleri simgeler.
+* `Git TekeEt` gibi yapılar `while` döngüsü eşdeğeridir.
+* Bu algoritma gözleme dayalı kararlar da içeriyor, bu yüzden bazı koşullar kullanıcı müdahalesine açık tutulabilir.
+
+---
+
+İstersen bu algoritmayı **Python koduna çevirebilir** veya **farklı çay türlerine göre** (örneğin yeşil çay, bitki çayı) uyarlayabiliriz. Yardımcı olmamı ister misin?
+
+Suyun kaynaması için sıcaklığı kaç derece yapmalıyız.Bir de kaç dakikada bir bakmalıyız?
+
+Harika bir soru — çayın lezzeti, doğru sıcaklık ve zamanlamayla doğrudan bağlantılıdır. Şimdi sana bilimsel ve pratik bir şekilde açıklayayım:
+
+🔥 1. Suyun Kaynama Noktası Kaç Derecedir?
+
+Standart atmosfer basıncında (deniz seviyesinde) su 100°C'de kaynar.
+
+Rakım yükseldikçe (örneğin dağlık bölgelerde) su daha düşük sıcaklıkta kaynar.
+Örneğin 2000 metre yükseklikte yaklaşık 93–94°C civarında.
+
+İdeal çay demleme için suyun tamamen kaynaması gerekir, yani:
+✅ Hedef sıcaklık: 100°C
+
+⏱️ 2. Suyun Kaynaması Ne Kadar Sürer?
+
+Bu, birkaç faktöre bağlıdır:
+
+Faktör	Etkisi
+Ocağın gücü	Yüksek ısıda daha hızlı
+Su miktarı	Daha fazla su, daha uzun süre
+Başlangıç sıcaklığı	Ilık su daha çabuk kaynar
+Kap malzemesi	Çelik daha hızlı ısıtır, cam daha yavaş
+Ortalama süre (1 litre su için):
+
+Gazlı ocakta: 7–10 dakika
+
+Elektrikli kettle: 3–5 dakika
+
+Indüksiyon ocakta: 5–7 dakika
+
+🔁 3. Kaç Dakikada Bir Kontrol Etmeli?
+
+Manuel takip edeceksen:
+İlk 4–5 dakikadan sonra kaynama seslerini dinlemeye başla.
+Her 1 dakikada bir kontrol etmek iyi bir alışkanlıktır.
+
+GeçenSüre = 0
+
+TekeEt:
+    Eğer AltDemlik.suKaynıyorMu() == FALSE ise:
+        1 dakika bekle
+        GeçenSüre += 1
+        Eğer GeçenSüre > 10 ise:
+            Yazdır("Su çok geç kaynıyor, ocağı kontrol edin.")
+        Git TekeEt
+
+Harika bir soru — çayın lezzeti, doğru sıcaklık ve zamanlamayla doğrudan bağlantılıdır. Şimdi sana bilimsel ve pratik bir şekilde açıklayayım:
+
+---
+
+## 🔥 1. **Suyun Kaynama Noktası Kaç Derecedir?**
+
+* **Standart atmosfer basıncında (deniz seviyesinde)** su **100°C**'de kaynar.
+* Rakım yükseldikçe (örneğin dağlık bölgelerde) **su daha düşük sıcaklıkta kaynar.**
+  Örneğin 2000 metre yükseklikte yaklaşık 93–94°C civarında.
+
+**İdeal çay demleme için suyun tamamen kaynaması gerekir**, yani:
+✅ **Hedef sıcaklık: 100°C**
+
+---
+
+## ⏱️ 2. **Suyun Kaynaması Ne Kadar Sürer?**
+
+Bu, birkaç faktöre bağlıdır:
+
+| Faktör              | Etkisi                                  |
+| ------------------- | --------------------------------------- |
+| Ocağın gücü         | Yüksek ısıda daha hızlı                 |
+| Su miktarı          | Daha fazla su, daha uzun süre           |
+| Başlangıç sıcaklığı | Ilık su daha çabuk kaynar               |
+| Kap malzemesi       | Çelik daha hızlı ısıtır, cam daha yavaş |
+
+### Ortalama süre (1 litre su için):
+
+* **Gazlı ocakta:** 7–10 dakika
+* **Elektrikli kettle:** 3–5 dakika
+* **Indüksiyon ocakta:** 5–7 dakika
+
+---
+
+## 🔁 3. **Kaç Dakikada Bir Kontrol Etmeli?**
+
+Manuel takip edeceksen:
+
+* **İlk 4–5 dakikadan sonra** kaynama seslerini dinlemeye başla.
+* **Her 1 dakikada bir kontrol** etmek iyi bir alışkanlıktır.
+
+```pseudocode
+GeçenSüre = 0
+
+TekeEt:
+    Eğer AltDemlik.suKaynıyorMu() == FALSE ise:
+        1 dakika bekle
+        GeçenSüre += 1
+        Eğer GeçenSüre > 10 ise:
+            Yazdır("Su çok geç kaynıyor, ocağı kontrol edin.")
+        Git TekeEt
+```
+
+---
+
+## 🧪 Bonus: Kaynamanın Görsel Belirtileri
+
+* **70–80°C:** Küçük kabarcıklar oluşur, hafif ses çıkar.
+* **85–95°C:** Kabarcıklar büyür, su "fokurdamaya" başlar.
+* **~100°C:** Su sürekli fokurdayarak kaynar, bu andan sonra demleme için uygundur.
+
+---
+
+## 🎯 Sonuç:
+
+| Değer                    | Açıklama                                      |
+| ------------------------ | --------------------------------------------- |
+| **Hedef sıcaklık:**      | 100°C                                         |
+| **Kontrol sıklığı:**     | İlk 5 dakikadan sonra, **her 1 dakikada bir** |
+| **Kaynama süresi (1L):** | Ortalama **7–10 dakika**                      |
+
+---
+
+İstersen bu süreleri kullanan bir **otomatik sıcaklık takip sistemi (örneğin sensör destekli bir sistem)** için algoritma da tasarlayabiliriz. Dilersen oraya geçebiliriz.
+
+Sıcaklığı ölçüp ordan çayın kaynama süresinin ne kadar kalacağını düşünen bir sistem düşünebiliriz.Ayrıca kişinin çaydanlığın başında beklemesine gerek kalmaz.
+
+Harika bir fikir! Bu aslında bir akıllı çay demleme asistanı gibi çalışacak bir sistem olur. Kullanıcının çaydanlığın başında beklemesine gerek kalmaz; sistem, suyun sıcaklığını sensörle ölçer, kaynama süresini tahmin eder ve çay tam zamanında demlenir.
+
+🔧 Sistemin Temel Özellikleri
+1.Sıcaklık Sensörü (örneğin: DS18B20, TMP36, vb.) kullanılır.
+2.Suyun anlık sıcaklığı sürekli ölçülür.
+3.Önceden belirlenmiş sıcaklık artış hızına göre kalan süre tahmin edilir.
+4.Su kaynadığında bildirim verilir (sesli uyarı, telefon bildirimi vs.).
+5.Kullanıcının müdahalesine gerek kalmaz.
+
+💡 Sistem Adımları (Yüksek Seviyeli Bakış)
+1.Sistemi başlat.
+2.Sıcaklık sensöründen ilk sıcaklığı al.
+3.Belirli aralıklarla sıcaklığı ölç.
+4.Sıcaklık artış hızına göre kalan süreyi tahmin et.
+5.100°C'ye ulaşınca kullanıcıya haber ver.
+6.Gerekirse çay otomatik demlenmeye alınır (opsiyonel).
+
+🔄 Akıllı Algoritma Pseudocode (Koşul + Tahmin + Bildirim)
+BAŞLA
+
+hedefSicaklik = 100  // Derece Celsius
+kontrolAraligi = 10  // Saniye
+sicaklikListesi = []
+zamanListesi = []
+
+Yazdır("Su ısıtma süreci başlatıldı...")
+
+Tekrar:
+    anlikSicaklik = SicaklikSensoru.olc()
+    anlikZaman = SistemSaati.get()
+    
+    sicaklikListesi.ekle(anlikSicaklik)
+    zamanListesi.ekle(anlikZaman)
+    
+    Eğer anlikSicaklik >= hedefSicaklik:
+        Yazdır("Su kaynadı! Çay demlemeye hazır.")
+        Bildirim.gonder("Su kaynadı! Gelip demlemeye başlayabilirsin.")
+        DUR
+
+    Eğer sicaklikListesi.uzunluk >= 2:
+        sonDeltaT = zamanListesi[-1] - zamanListesi[-2]
+        sonDeltaS = sicaklikListesi[-1] - sicaklikListesi[-2]
+        
+        Eğer sonDeltaT > 0:
+            artisHizi = sonDeltaS / sonDeltaT  // °C/saniye
+            kalanSicaklik = hedefSicaklik - anlikSicaklik
+            tahminiKalanSure = kalanSicaklik / artisHizi
+
+            Yazdır("Anlık sıcaklık: ", anlikSicaklik, "°C")
+            Yazdır("Tahmini kalan süre: ", yuvarla(tahminiKalanSure), " saniye")
+    
+    Bekle(kontrolAraligi saniye)
+    Git Tekrar
+
+Harika bir fikir! Bu aslında bir **akıllı çay demleme asistanı** gibi çalışacak bir sistem olur. Kullanıcının çaydanlığın başında beklemesine gerek kalmaz; sistem, suyun sıcaklığını **sensörle ölçer**, **kaynama süresini tahmin eder** ve çay tam zamanında demlenir.
+
+---
+
+## 🔧 Sistemin Temel Özellikleri
+
+1. **Sıcaklık Sensörü** (örneğin: DS18B20, TMP36, vb.) kullanılır.
+2. Suyun anlık sıcaklığı sürekli ölçülür.
+3. Önceden belirlenmiş sıcaklık artış hızına göre **kalan süre tahmin edilir**.
+4. Su kaynadığında bildirim verilir (sesli uyarı, telefon bildirimi vs.).
+5. Kullanıcının müdahalesine gerek kalmaz.
+
+---
+
+## 💡 Sistem Adımları (Yüksek Seviyeli Bakış)
+
+1. Sistemi başlat.
+2. Sıcaklık sensöründen ilk sıcaklığı al.
+3. Belirli aralıklarla sıcaklığı ölç.
+4. Sıcaklık artış hızına göre kalan süreyi tahmin et.
+5. 100°C'ye ulaşınca kullanıcıya haber ver.
+6. Gerekirse çay otomatik demlenmeye alınır (opsiyonel).
+
+---
+
+## 🔄 Akıllı Algoritma Pseudocode (Koşul + Tahmin + Bildirim)
+
+```pseudocode
+BAŞLA
+
+hedefSicaklik = 100  // Derece Celsius
+kontrolAraligi = 10  // Saniye
+sicaklikListesi = []
+zamanListesi = []
+
+Yazdır("Su ısıtma süreci başlatıldı...")
+
+Tekrar:
+    anlikSicaklik = SicaklikSensoru.olc()
+    anlikZaman = SistemSaati.get()
+    
+    sicaklikListesi.ekle(anlikSicaklik)
+    zamanListesi.ekle(anlikZaman)
+    
+    Eğer anlikSicaklik >= hedefSicaklik:
+        Yazdır("Su kaynadı! Çay demlemeye hazır.")
+        Bildirim.gonder("Su kaynadı! Gelip demlemeye başlayabilirsin.")
+        DUR
+
+    Eğer sicaklikListesi.uzunluk >= 2:
+        sonDeltaT = zamanListesi[-1] - zamanListesi[-2]
+        sonDeltaS = sicaklikListesi[-1] - sicaklikListesi[-2]
+        
+        Eğer sonDeltaT > 0:
+            artisHizi = sonDeltaS / sonDeltaT  // °C/saniye
+            kalanSicaklik = hedefSicaklik - anlikSicaklik
+            tahminiKalanSure = kalanSicaklik / artisHizi
+
+            Yazdır("Anlık sıcaklık: ", anlikSicaklik, "°C")
+            Yazdır("Tahmini kalan süre: ", yuvarla(tahminiKalanSure), " saniye")
+    
+    Bekle(kontrolAraligi saniye)
+    Git Tekrar
+```
+
+---
+
+## 🧠 Bu Sistemin Sağladıkları
+
+| Özellik                           | Açıklama                                                    |
+| --------------------------------- | ----------------------------------------------------------- |
+| 🔥 Gerçek zamanlı sıcaklık takibi | Sensörle sürekli kontrol                                    |
+| ⏱️ Süre tahmini                   | Artış hızına göre kalan süre                                |
+| 🔔 Bildirim                       | Kaynama anında kullanıcıyı uyarır                           |
+| 🧊 Güvenlik                       | Aşırı ısınma, beklenmeyen duraklamalar da tespit edilebilir |
+
+---
+
+## 🛠️ Geliştirme Fikirleri
+
+* Akıllı telefon bildirimi (Bluetooth, WiFi ile).
+* Sesli uyarı (buzzer veya hoparlör).
+* Otomatik çay dökme sistemi (akıllı motorlarla).
+* Farklı çay türlerine göre sıcaklık/süre ayarı.
