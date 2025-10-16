@@ -1,4 +1,1109 @@
-Öğrenci No:
-AD-SOYAD:
+Öğrenci No:250542014
+AD-SOYAD:Yiğit Alper Ayhan
 
-Lütfen seçtiğiniz algoritmaya ait çözümü ve diğer isterleri aşağıya ekleyiniz:
+En kısa sürede üniversiteye gitme algoritması için adım adım algoritma geliştirmek istiyorum. Koşullu durumları ve tekrar eden işlemleri de içeren detaylı bir pseudocode yazmama yardım eder misin?
+
+Tabii! Üniversiteye en kısa sürede gitme algoritması, günlük yaşantıda bir rota optimizasyonu veya ulaşım planlaması problemidir. Burada algoritmanın amacı, başlangıç noktasından üniversiteye en hızlı şekilde ulaşmak için en uygun rotayı bulmaktır. Bu tür bir problem genelde harita verisi, trafik durumu, toplu taşıma saatleri gibi bilgilerle çalışır.
+Seninle birlikte, bu problemi koşullu durumlar, tekrar eden işlemler (döngüler) ve karar yapıları içerecek şekilde pseudocode (sözde kod) olarak yazalım.
+
+Problem Tanımı (Kısaca)
+Amaç: Evden üniversiteye en kısa sürede gitmek
+Girdi: Başlangıç konumu, hedef (üniversite), ulaşım araçları, trafik durumu
+Çıktı: En kısa süreli yol ve ulaşım planı
+
+🎯 Temel Yaklaşım (Özet)
+Kullanılabilir tüm ulaşım yöntemlerini topla
+Her biri için rotaları ve tahmini süreleri hesapla
+En kısa sürede olanı seç
+Planı oluştur ve kullanıcıya bildir
+
+Kullanacağımız Kavramlar
+Koşullar: "Otobüs geç kaldı mı?", "Trafik yoğun mu?" gibi if-else yapıları
+Döngüler: Alternatif yolları/ulaşım araçlarını tek tek kontrol etmek için
+Veri yapısı: Rotaları ve süreleri tutmak için liste/tablo
+
+Pseudocode: Üniversiteye En Kısa Sürede Gitme Algoritması
+ALGORITHM EnKisaSüreIleUniversiteyeGit
+
+INPUT: BaslangicNoktasi, HedefNokta (Üniversite), UlasimYontemleri[], TrafikVerisi, TopluTasimalar
+
+OUTPUT: EnKisaSureliRota, KullanilacakUlasimYontemi
+
+BEGIN
+
+    Rotalar ← boş liste
+
+    FOR her yontem IN UlasimYontemleri DO
+        Rota ← HesaplaRota(BaslangicNoktasi, HedefNokta, yontem)
+        Sure ← TahminiSure(Rota, TrafikVerisi, TopluTasimalar)
+
+        // Koşullu durumlar
+        IF Sure == ∞ THEN
+            // Rota kullanılamaz (örneğin otobüs geç gelmiyor)
+            CONTINUE
+        ENDIF
+
+        Rotalar.add((Rota, Sure, yontem))
+    ENDFOR
+
+    // Hiçbir rota bulunamadıysa
+    IF Rotalar.isEmpty() THEN
+        PRINT "Üniversiteye gidebilecek rota bulunamadı."
+        RETURN
+    ENDIF
+
+    // En kısa süreli rotayı bul
+    EnKisaRota ← Rotalar[0]
+
+    FOR her rota IN Rotalar DO
+        IF rota.Sure < EnKisaRota.Sure THEN
+            EnKisaRota ← rota
+        ENDIF
+    ENDFOR
+
+    PRINT "En kısa rota bulundu!"
+    PRINT "Ulaşım Yöntemi: ", EnKisaRota.yontem
+    PRINT "Tahmini Süre: ", EnKisaRota.Sure, " dakika"
+    PRINT "İzlenecek Yol: ", EnKisaRota.Rota
+
+END
+
+Kullanılan Fonksiyonlar (Varsayımsal)
+HesaplaRota(baslangic, hedef, yontem)
+Harita ve ulaşım verilerine göre iki nokta arasındaki rotayı hesaplar
+Ulaşım yöntemi (yürüyüş, otobüs, araba, metro vs.) dikkate alınır
+
+TahminiSure(rota, trafik, tasimaverisi)
+Trafik yoğunluğuna veya toplu taşıma saatlerine göre tahmini süre hesaplar
+Gecikmeler varsa süreyi artırabilir
+
+🔁 Örnek Ulaşım Yöntemleri
+UlasimYontemleri = ["Yürüyüş", "Bisiklet", "TopluTaşıma", "Araba", "Scooter"]
+
+✍️ Notlar
+Gerçek hayatta bu algoritma, Dijkstra, A* gibi yol bulma algoritmalarıyla entegre olabilir.
+Gerçek zamanlı trafik ve ulaşım verisi gerekiyorsa bir API (örneğin Google Maps API) ile veri çekilmelidir.
+Kullanıcının tercihlerine göre filtreleme eklenebilir (örneğin "yürümek istemiyorum").
+
+Tabii! Üniversiteye **en kısa sürede gitme algoritması**, günlük yaşantıda bir rota optimizasyonu veya ulaşım planlaması problemidir. Burada algoritmanın amacı, başlangıç noktasından üniversiteye **en hızlı şekilde ulaşmak** için en uygun rotayı bulmaktır. Bu tür bir problem genelde harita verisi, trafik durumu, toplu taşıma saatleri gibi bilgilerle çalışır.
+
+Seninle birlikte, bu problemi **koşullu durumlar**, **tekrar eden işlemler (döngüler)** ve **karar yapıları** içerecek şekilde **pseudocode (sözde kod)** olarak yazalım.
+
+---
+
+### 🔍 Problem Tanımı (Kısaca)
+
+Amaç: Evden üniversiteye en kısa sürede gitmek
+Girdi: Başlangıç konumu, hedef (üniversite), ulaşım araçları, trafik durumu
+Çıktı: En kısa süreli yol ve ulaşım planı
+
+---
+
+### 🎯 Temel Yaklaşım (Özet)
+
+1. Kullanılabilir tüm ulaşım yöntemlerini topla
+2. Her biri için rotaları ve tahmini süreleri hesapla
+3. En kısa sürede olanı seç
+4. Planı oluştur ve kullanıcıya bildir
+
+---
+
+### 🧠 Kullanacağımız Kavramlar
+
+* **Koşullar**: "Otobüs geç kaldı mı?", "Trafik yoğun mu?" gibi if-else yapıları
+* **Döngüler**: Alternatif yolları/ulaşım araçlarını tek tek kontrol etmek için
+* **Veri yapısı**: Rotaları ve süreleri tutmak için liste/tablo
+
+---
+
+## ✅ Pseudocode: Üniversiteye En Kısa Sürede Gitme Algoritması
+
+```
+ALGORITHM EnKisaSüreIleUniversiteyeGit
+
+INPUT: BaslangicNoktasi, HedefNokta (Üniversite), UlasimYontemleri[], TrafikVerisi, TopluTasimalar
+
+OUTPUT: EnKisaSureliRota, KullanilacakUlasimYontemi
+
+BEGIN
+
+    Rotalar ← boş liste
+
+    FOR her yontem IN UlasimYontemleri DO
+        Rota ← HesaplaRota(BaslangicNoktasi, HedefNokta, yontem)
+        Sure ← TahminiSure(Rota, TrafikVerisi, TopluTasimalar)
+
+        // Koşullu durumlar
+        IF Sure == ∞ THEN
+            // Rota kullanılamaz (örneğin otobüs geç gelmiyor)
+            CONTINUE
+        ENDIF
+
+        Rotalar.add((Rota, Sure, yontem))
+    ENDFOR
+
+    // Hiçbir rota bulunamadıysa
+    IF Rotalar.isEmpty() THEN
+        PRINT "Üniversiteye gidebilecek rota bulunamadı."
+        RETURN
+    ENDIF
+
+    // En kısa süreli rotayı bul
+    EnKisaRota ← Rotalar[0]
+
+    FOR her rota IN Rotalar DO
+        IF rota.Sure < EnKisaRota.Sure THEN
+            EnKisaRota ← rota
+        ENDIF
+    ENDFOR
+
+    PRINT "En kısa rota bulundu!"
+    PRINT "Ulaşım Yöntemi: ", EnKisaRota.yontem
+    PRINT "Tahmini Süre: ", EnKisaRota.Sure, " dakika"
+    PRINT "İzlenecek Yol: ", EnKisaRota.Rota
+
+END
+```
+
+---
+
+## 🧩 Kullanılan Fonksiyonlar (Varsayımsal)
+
+### `HesaplaRota(baslangic, hedef, yontem)`
+
+* Harita ve ulaşım verilerine göre iki nokta arasındaki rotayı hesaplar
+* Ulaşım yöntemi (yürüyüş, otobüs, araba, metro vs.) dikkate alınır
+
+### `TahminiSure(rota, trafik, tasimaverisi)`
+
+* Trafik yoğunluğuna veya toplu taşıma saatlerine göre tahmini süre hesaplar
+* Gecikmeler varsa süreyi artırabilir
+
+---
+
+## 🔁 Örnek Ulaşım Yöntemleri
+
+```python
+UlasimYontemleri = ["Yürüyüş", "Bisiklet", "TopluTaşıma", "Araba", "Scooter"]
+```
+
+---
+
+### ✍️ Notlar
+
+* Gerçek hayatta bu algoritma, Dijkstra, A* gibi yol bulma algoritmalarıyla entegre olabilir.
+* Gerçek zamanlı trafik ve ulaşım verisi gerekiyorsa bir API (örneğin Google Maps API) ile veri çekilmelidir.
+* Kullanıcının tercihlerine göre filtreleme eklenebilir (örneğin "yürümek istemiyorum").
+
+---
+
+İstersen bu algoritmayı daha da özelleştirebiliriz:
+
+* Gerçek zamanlı uygulama planı
+* Mobil uygulama senaryosu
+* Otobüs saatlerine göre dinamik kararlar
+
+Hazır mısın bir sonraki adım için?
+
+Bu algoritmayı anlamadım.Basit ve adım adım açıklar mısın?
+
+Tabii! Sana bu algoritmayı daha basit, günlük hayatla bağlantılı ve adım adım açıklayarak anlatayım. Üniversiteye en kısa sürede gitmek için ne yaparız, bunu adım adım düşünelim.
+
+Üniversiteye En Kısa Sürede Gitmek – Basit Algoritma Açıklaması
+🎯 Amaç:
+
+Evden çıkıp üniversiteye en kısa sürede gitmek istiyoruz. Bu yüzden hangi yolu, hangi ulaşım aracını kullanacağımıza karar vermemiz gerekiyor.
+
+✅ ADIM ADIM AÇIKLAMA:
+🟢 1. Adım: Başlangıç ve Hedefi Belirle
+Nereden çıkıyorum? → Örneğin: Ev
+Nereye gideceğim? → Üniversite
+
+📝 Bu adımda elimizde şunlar oluyor:
+
+Başlangıç = "Ev"
+Hedef = "Üniversite"
+
+🟢 2. Adım: Hangi ulaşım araçlarını kullanabileceğime bak
+Yürüyebilir miyim?
+Bisikletim var mı?
+Otobüs veya metro var mı?
+Arabayla gidebilir miyim?
+Scooter var mı?
+
+Örnek olarak:
+
+Ulaşım seçenekleri = ["Yürüyüş", "Otobüs", "Araba"]
+
+🟢 3. Adım: Her ulaşım aracıyla kaç dakikada gidebileceğime bak
+Her bir ulaşım şekli için süreyi hesapla. Mesela:
+Yürüyerek: 40 dakika
+Otobüsle: 25 dakika (ama otobüs 10 dakikaya geliyor)
+Arabayla: 20 dakika (ama trafik varsa 35 dakikaya çıkar)
+
+⚠️ Koşullar:
+
+Otobüs hiç gelmiyorsa → bu seçeneği iptal et
+Trafik çok yoğunsa → araba süresi artar
+
+🟢 4. Adım: Tüm süreleri karşılaştır
+
+Yani bak:
+
+Ulaşım	Süre (dakika)
+Yürüyüş	40
+Otobüs	25
+Araba	35
+
+En kısa süre hangisinde? → Otobüs (25 dakika)
+
+🟢 5. Adım: En kısa olanı seç ve yola çık
+
+En kısa sürede götüren yöntemi seç:
+
+"Otobüs ile git → 25 dakika sürecek"
+
+ÖZETLE:
+
+Basit Algoritma:
+1.Nereden nereye gideceğini belirle
+2.Hangi ulaşım araçlarını kullanabileceğine bak
+3.Her biriyle kaç dakika süreceğini hesapla
+4.En kısa süreni seç
+5.O ulaşım yoluyla yola çık
+
+Gerçek Hayattan Küçük Örnek
+
+Senaryo:
+Sabah 8:00, derse 9:00'da yetişmek istiyorsun. Evdesin.
+
+Yürürsen 40 dakika
+Otobüs 10 dakikaya geliyor, yolculuk 15 dakika
+Araba ile normalde 20 dakika ama şu an trafik var, 35 dakika sürecek
+
+✅ En iyisi: Otobüs (10 dakika bekle + 15 dakika yol = 25 dakika)
+
+Tabii! Sana bu algoritmayı daha **basit**, **günlük hayatla bağlantılı** ve **adım adım açıklayarak** anlatayım. Üniversiteye en kısa sürede gitmek için ne yaparız, bunu adım adım düşünelim.
+
+---
+
+## 🚶‍♂️ Üniversiteye En Kısa Sürede Gitmek – Basit Algoritma Açıklaması
+
+### 🎯 Amaç:
+
+Evden çıkıp üniversiteye **en kısa sürede** gitmek istiyoruz. Bu yüzden hangi yolu, hangi ulaşım aracını kullanacağımıza karar vermemiz gerekiyor.
+
+---
+
+## ✅ ADIM ADIM AÇIKLAMA:
+
+---
+
+### 🟢 **1. Adım: Başlangıç ve Hedefi Belirle**
+
+* Nereden çıkıyorum? → Örneğin: Ev
+* Nereye gideceğim? → Üniversite
+
+📝 Bu adımda elimizde şunlar oluyor:
+
+```
+Başlangıç = "Ev"
+Hedef = "Üniversite"
+```
+
+---
+
+### 🟢 **2. Adım: Hangi ulaşım araçlarını kullanabileceğime bak**
+
+* Yürüyebilir miyim?
+* Bisikletim var mı?
+* Otobüs veya metro var mı?
+* Arabayla gidebilir miyim?
+* Scooter var mı?
+
+Örnek olarak:
+
+```
+Ulaşım seçenekleri = ["Yürüyüş", "Otobüs", "Araba"]
+```
+
+---
+
+### 🟢 **3. Adım: Her ulaşım aracıyla kaç dakikada gidebileceğime bak**
+
+Her bir ulaşım şekli için süreyi hesapla. Mesela:
+
+* Yürüyerek: 40 dakika
+* Otobüsle: 25 dakika (ama otobüs 10 dakikaya geliyor)
+* Arabayla: 20 dakika (ama trafik varsa 35 dakikaya çıkar)
+
+⚠️ **Koşullar**:
+
+* Otobüs hiç gelmiyorsa → bu seçeneği iptal et
+* Trafik çok yoğunsa → araba süresi artar
+
+---
+
+### 🟢 **4. Adım: Tüm süreleri karşılaştır**
+
+Yani bak:
+
+| Ulaşım  | Süre (dakika) |
+| ------- | ------------- |
+| Yürüyüş | 40            |
+| Otobüs  | 25            |
+| Araba   | 35            |
+
+En kısa süre hangisinde? → Otobüs (25 dakika)
+
+---
+
+### 🟢 **5. Adım: En kısa olanı seç ve yola çık**
+
+En kısa sürede götüren yöntemi seç:
+
+```
+"Otobüs ile git → 25 dakika sürecek"
+```
+
+---
+
+## 📦 ÖZETLE:
+
+**Basit Algoritma:**
+
+1. Nereden nereye gideceğini belirle
+2. Hangi ulaşım araçlarını kullanabileceğine bak
+3. Her biriyle kaç dakika süreceğini hesapla
+4. En kısa süreni seç
+5. O ulaşım yoluyla yola çık
+
+---
+
+## ❓ Gerçek Hayattan Küçük Örnek
+
+**Senaryo:**
+Sabah 8:00, derse 9:00'da yetişmek istiyorsun. Evdesin.
+
+* Yürürsen 40 dakika
+* Otobüs 10 dakikaya geliyor, yolculuk 15 dakika
+* Araba ile normalde 20 dakika ama şu an trafik var, 35 dakika sürecek
+
+✅ En iyisi: **Otobüs** (10 dakika bekle + 15 dakika yol = 25 dakika)
+
+---
+
+Bu açıklama daha anlaşılır oldu mu?
+İstersen aynı algoritmayı senin gerçek yaşantına uygun hale getirerek birlikte yazabiliriz.
+
+Olur.
+
+Harika! O zaman algoritmayı **senin gerçek hayatına göre** adım adım birlikte oluşturalım.
+
+### ✍️ Başlamadan önce birkaç soruya ihtiyacım var:
+
+1. **Nereden çıkıyorsun?** (örneğin: ev, yurt, başka bir yer?)
+2. **Üniversiteye ulaşmak için hangi ulaşım araçlarını kullanabiliyorsun?** (örnek: yürüyüş, otobüs, minibüs, bisiklet, scooter, araba, metro vb.)
+3. **Bu ulaşım araçlarının yaklaşık süreleri ne kadar?** (tahmini veya bildiğin kadarıyla yazabilirsin)
+4. **Trafik durumu veya bekleme süresi gibi durumlar var mı?** (örnek: "otobüs 10 dakikada bir geliyor", "sabah trafik yoğun oluyor" gibi)
+
+---
+
+Bu 4 soruya cevap verirsen, senin için tamamen **kişisel bir algoritma** yazacağım ve basit şekilde anlatacağım.
+
+Hazırsan başlayalım:
+Lütfen yukarıdaki soruları sırayla cevapla.
+
+Ev,otobüs,30 dk otobüs,15 dk da bir otobüs geliyor.
+
+Süper! Elimizdeki bilgilerle başlayalım:
+
+📌 Senin Verilerin:
+
+Başlangıç: Ev
+Gideceğin Yer: Üniversite
+Kullanabileceğin Ulaşım: Otobüs
+Otobüs yolculuğu süresi: 30 dakika
+Otobüs sıklığı: 15 dakikada bir geliyor
+(Şimdilik sadece otobüsle gidebildiğini varsayıyoruz.)
+
+ADIM ADIM SENİN İÇİN KİŞİSELLEŞTİRİLMİŞ ALGORİTMA
+🔹 1. Evde olduğunu ve üniversiteye gitmen gerektiğini kontrol et
+Eğer konumun ev ise → devam et
+
+🔹2. Otobüs var mı? Bekleme süresi kaç dakika?
+
+Otobüs her 15 dakikada bir geliyor.
+
+Diyelim şu an saat 08:07
+
+Otobüsün geliş süresi:
+Bekleme Süresi = 15 - (07 % 15) = 8 dakika
+
+(Çünkü 08:07 → 15'e tamamlamak için 8 dakika gerekiyor.)
+
+🔹 3. Yolculuk süresini hesapla
+
+Bekleme süresi: 8 dakika
+
+Otobüsle gidiş süresi: 30 dakika
+
+Toplam süre:
+8 + 30 = 38 dakika
+
+🔹 4. Yetişmen gereken saatle karşılaştır
+
+Diyelim derse saat 09:00'da yetişmen gerekiyor.
+
+Şu an saat: 08:07
+
+Otobüsle toplam süre: 38 dakika
+
+08:07 + 38 dakika = 08:45 → DERS SAATİNE YETİYORSUN ✅
+
+Basit Algoritma (Senin Durumuna Göre Pseudocode)
+ALGORİTMA UniversiteyeGit
+
+GİRİŞ: ŞuAnkiSaat
+OTOBÜS_ARALIK = 15
+OTOBÜS_SÜRESİ = 30
+
+1. Eğer evdeysen:
+    2. BeklemeSüresi = OTobüs_Aralık - (ŞuAnkiSaat % OTobüs_Aralık)
+    3. ToplamSüre = BeklemeSüresi + OTobüs_SÜRESİ
+    4. VarmışSaat = ŞuAnkiSaat + ToplamSüre
+    5. Eğer VarmışSaat ≤ DersSaati:
+           "Otobüsle git, zamanında yetişiyorsun"
+       Aksi halde:
+           "Otobüsle gitme, geç kalırsın"
+SON
+
+Gerçek Hayattaki Örnek:
+Saat	Otobüs Kaç Dakikaya Gelir?	Varmış Saat	Yetişir misin?
+08:00	15 dakika	08:45	✅ Evet
+08:10	5 dakika	08:45	✅ Evet
+08:30	15 dakika	09:15	❌ Geç kalırsın
+
+Süper! Elimizdeki bilgilerle başlayalım:
+
+---
+
+## 📌 Senin Verilerin:
+
+* **Başlangıç:** Ev
+* **Gideceğin Yer:** Üniversite
+* **Kullanabileceğin Ulaşım:** Otobüs
+* **Otobüs yolculuğu süresi:** 30 dakika
+* **Otobüs sıklığı:** 15 dakikada bir geliyor
+
+(Şimdilik sadece otobüsle gidebildiğini varsayıyoruz.)
+
+---
+
+## ✅ ADIM ADIM SENİN İÇİN KİŞİSELLEŞTİRİLMİŞ ALGORİTMA
+
+### 🔹 1. Evde olduğunu ve üniversiteye gitmen gerektiğini kontrol et
+
+```
+Eğer konumun ev ise → devam et
+```
+
+---
+
+### 🔹 2. Otobüs var mı? Bekleme süresi kaç dakika?
+
+Otobüs her 15 dakikada bir geliyor.
+
+Diyelim şu an saat **08:07**
+
+* Otobüsün geliş süresi:
+  `Bekleme Süresi = 15 - (07 % 15) = 8 dakika`
+
+(Çünkü 08:07 → 15'e tamamlamak için 8 dakika gerekiyor.)
+
+---
+
+### 🔹 3. Yolculuk süresini hesapla
+
+* **Bekleme süresi:** 8 dakika
+* **Otobüsle gidiş süresi:** 30 dakika
+* **Toplam süre:**
+  `8 + 30 = 38 dakika`
+
+---
+
+### 🔹 4. Yetişmen gereken saatle karşılaştır
+
+Diyelim derse **saat 09:00'da** yetişmen gerekiyor.
+
+* Şu an saat: 08:07
+* Otobüsle toplam süre: 38 dakika
+* 08:07 + 38 dakika = 08:45 → DERS SAATİNE YETİYORSUN ✅
+
+---
+
+## ✅ Basit Algoritma (Senin Durumuna Göre Pseudocode)
+
+```
+ALGORİTMA UniversiteyeGit
+
+GİRİŞ: ŞuAnkiSaat
+OTOBÜS_ARALIK = 15
+OTOBÜS_SÜRESİ = 30
+
+1. Eğer evdeysen:
+    2. BeklemeSüresi = OTobüs_Aralık - (ŞuAnkiSaat % OTobüs_Aralık)
+    3. ToplamSüre = BeklemeSüresi + OTobüs_SÜRESİ
+    4. VarmışSaat = ŞuAnkiSaat + ToplamSüre
+    5. Eğer VarmışSaat ≤ DersSaati:
+           "Otobüsle git, zamanında yetişiyorsun"
+       Aksi halde:
+           "Otobüsle gitme, geç kalırsın"
+SON
+```
+
+---
+
+## 🎯 Gerçek Hayattaki Örnek:
+
+| Saat  | Otobüs Kaç Dakikaya Gelir? | Varmış Saat | Yetişir misin? |
+| ----- | -------------------------- | ----------- | -------------- |
+| 08:00 | 15 dakika                  | 08:45       | ✅ Evet         |
+| 08:10 | 5 dakika                   | 08:45       | ✅ Evet         |
+| 08:30 | 15 dakika                  | 09:15       | ❌ Geç kalırsın |
+
+---
+
+## ⚠️ İleri Seviyeye Geçmek İstersen
+
+İleride algoritmayı şöyle geliştirebiliriz:
+
+* Alternatif ulaşım eklemek (yürüyerek 45 dakika gibi)
+* Sabah trafiğini hesaba katmak
+* Otobüs saatlerini bir liste olarak ekleyip en yakını bulmak
+
+---
+
+Hazırsan şimdi bu algoritmayı birlikte **bir uygulama veya çizelge haline** de getirebiliriz.
+
+İstersen sıradaki adımı birlikte belirleyelim:
+
+* ✅ Alternatif ulaşım ekleyelim mi?
+* ✅ Saat saat tablo mu hazırlayalım?
+* ✅ Gerçek kod olarak yazalım mı?
+
+Hangisini istersin?
+
+ŞuAnkiSaat % OTobüs_Aralık neden var?
+
+Çok güzel bir soru! 👏
+"ŞuAnkiSaat % Otobüs_Aralık" ifadesi neden kullanılıyor, bunu adım adım ve basit bir şekilde açıklayayım:
+
+🔢 % İşareti Ne Anlama Geliyor?
+
+Bu işaretin adı: mod (modülüs)
+Anlamı: bölümden kalanı verir.
+
+Örnek:
+
+10 % 4 = 2  → çünkü 10 ÷ 4 = 2 kalan 2
+15 % 5 = 0  → çünkü 15 ÷ 5 = 3 kalan 0
+
+🚌 Otobüs 15 Dakikada Bir Geliyorsa Ne Demek?
+
+Bu, saat başına (örneğin 08:00) göre her 15 dakikada bir otobüs var demektir:
+
+🕒 Otobüs gelir:
+
+08:00
+
+08:15
+
+08:30
+
+08:45
+
+09:00
+
+...
+
+Yani, otobüs saatleri hep 15'in katlarıdır: 0, 15, 30, 45, 60 (yani 09:00)
+
+🔍 Peki “Şu an saat 08:07” ise kaç dakika sonra otobüs gelir?
+
+Bunu bulmak için:
+
+08:07'yi 15'e bölüp kalana bakarız.
+
+Yani: 7 % 15 = 7
+
+Demek ki, bir sonraki 15 dakikalık otobüs gelene kadar 8 dakika var
+
+Neden 8?
+Çünkü 15 - 7 = 8 dakika sonra otobüs gelir (15. dakikaya tamamlamak için)
+
+📌 Yani Şu Formül:
+Bekleme Süresi = Otobüs_Aralık - (ŞuAnkiDakika % Otobüs_Aralık)
+
+
+→ Sana bir sonraki otobüse kaç dakika kaldığını söyler.
+
+Örneklerle Daha İyi Anlayalım
+ŞuAnkiSaat (dakika)	Otobüs_Aralık	Kalan	Bekleme Süresi
+08:00 → 0 dk	15	0	15 - 0 = 15 dk
+08:07 → 7 dk	15	7	15 - 7 = 8 dk
+08:13 → 13 dk	15	13	15 - 13 = 2 dk
+08:15 → 15 dk	15	0	15 - 0 = 15 dk
+
+Not: Bazı durumlarda 15 - 0 = 15 gibi görünse de, aslında otobüs hemen gelmiştir, sen de hemen binebilirsin.
+
+İstersen bu kısmı da şöyle değiştirebiliriz:
+
+Eğer (ŞuAnkiDakika % Otobüs_Aralık == 0) ise
+    BeklemeSüresi = 0  // otobüs geldi
+Aksi halde
+    BeklemeSüresi = Otobüs_Aralık - (ŞuAnkiDakika % Otobüs_Aralık)
+
+✅ Özetle
+
+% operatörü → kaç dakika geçtiğini ve kaç dakika kaldığını bulmak için kullanılır.
+
+Otobüsün gelme sıklığı ile şu anki dakikayı kıyaslayarak bir sonraki otobüse kalan süre hesaplanır.
+
+Çok güzel bir soru! 👏
+"**ŞuAnkiSaat % Otobüs_Aralık**" ifadesi neden kullanılıyor, bunu adım adım ve basit bir şekilde açıklayayım:
+
+---
+
+## 🔢 `%` İşareti Ne Anlama Geliyor?
+
+Bu işaretin adı: **mod (modülüs)**
+Anlamı: **bölümden kalan**ı verir.
+
+**Örnek:**
+
+```
+10 % 4 = 2  → çünkü 10 ÷ 4 = 2 kalan 2
+15 % 5 = 0  → çünkü 15 ÷ 5 = 3 kalan 0
+```
+
+---
+
+## 🚌 Otobüs 15 Dakikada Bir Geliyorsa Ne Demek?
+
+Bu, saat başına (örneğin 08:00) göre her 15 dakikada bir otobüs var demektir:
+
+🕒 Otobüs gelir:
+
+* 08:00
+* 08:15
+* 08:30
+* 08:45
+* 09:00
+* ...
+
+Yani, otobüs saatleri hep **15'in katları**dır: 0, 15, 30, 45, 60 (yani 09:00)
+
+---
+
+## 🔍 Peki “Şu an saat 08:07” ise kaç dakika sonra otobüs gelir?
+
+Bunu bulmak için:
+
+* 08:07'yi 15'e bölüp **kalana** bakarız.
+* Yani: `7 % 15 = 7`
+* Demek ki, bir sonraki 15 dakikalık otobüs gelene kadar **8 dakika** var
+
+**Neden 8?**
+Çünkü 15 - 7 = **8 dakika sonra** otobüs gelir (15. dakikaya tamamlamak için)
+
+---
+
+## 📌 Yani Şu Formül:
+
+```
+Bekleme Süresi = Otobüs_Aralık - (ŞuAnkiDakika % Otobüs_Aralık)
+```
+
+→ Sana bir sonraki otobüse **kaç dakika kaldığını** söyler.
+
+---
+
+## 🎯 Örneklerle Daha İyi Anlayalım
+
+| ŞuAnkiSaat (dakika) | Otobüs_Aralık | Kalan | Bekleme Süresi |
+| ------------------- | ------------- | ----- | -------------- |
+| 08:00 → 0 dk        | 15            | 0     | 15 - 0 = 15 dk |
+| 08:07 → 7 dk        | 15            | 7     | 15 - 7 = 8 dk  |
+| 08:13 → 13 dk       | 15            | 13    | 15 - 13 = 2 dk |
+| 08:15 → 15 dk       | 15            | 0     | 15 - 0 = 15 dk |
+
+**Not:** Bazı durumlarda 15 - 0 = 15 gibi görünse de, aslında otobüs **hemen gelmiştir**, sen de hemen binebilirsin.
+
+İstersen bu kısmı da şöyle değiştirebiliriz:
+
+```pseudocode
+Eğer (ŞuAnkiDakika % Otobüs_Aralık == 0) ise
+    BeklemeSüresi = 0  // otobüs geldi
+Aksi halde
+    BeklemeSüresi = Otobüs_Aralık - (ŞuAnkiDakika % Otobüs_Aralık)
+```
+
+---
+
+## ✅ Özetle
+
+* `%` operatörü → kaç dakika geçtiğini ve kaç dakika kaldığını bulmak için kullanılır.
+* **Otobüsün gelme sıklığı** ile **şu anki dakikayı** kıyaslayarak bir sonraki otobüse kalan süre hesaplanır.
+
+---
+
+İstersen bu hesaplamayı seninle gerçek saatle bir örnek üzerinden de yapabiliriz.
+Veya bunu küçük bir Python veya Excel hesaplayıcısına da dönüştürebiliriz.
+
+Ne yapmak istersin?
+
+Otobüsle evden üniversiteye 45 dk da gitsin.Trafik yoğunluğu olduğunda derse gecikme payını da yazan bir pseudocode yazar mısın?
+
+Evet! Hemen senin senaryona uygun, trafik yoğunluğu ve gecikme durumu da dikkate alınan bir pseudocode (sözde kod) yazalım.
+
+🎯 Senaryo Özeti:
+
+Evden üniversiteye otobüsle gitmek normalde 45 dakika sürüyor.
+
+Otobüs 15 dakikada bir geliyor.
+
+Trafik yoğun olabilir, bu da yolculuk süresini uzatabilir.
+
+Derse geç kalma riski varsa uyarı verilsin.
+
+✅ Girdi Bilgileri (Input):
+
+Şu an saat kaç? (örneğin: 08:10)
+
+Ders saati kaçta başlıyor? (örneğin: 09:00)
+
+Trafik durumu:
+
+"normal" → 45 dakika sürer
+
+"yoğun" → +15 dakika eklenir → toplam 60 dakika olur
+
+Pseudocode
+ALGORITHM UniversiteyeOtobusleGit
+
+INPUT: SuAnSaat (saat:dakika formatında, örn: 08:10)
+       DersSaati (örn: 09:00)
+       TrafikDurumu ("normal" veya "yoğun")
+
+SABİT OtobusAralik ← 15  // Otobüs her 15 dakikada bir geliyor
+SABİT NormalSure ← 45    // Normal otobüs yolculuğu süresi
+SABİT EkSure ← 15        // Trafik yoğunsa eklenecek süre
+
+// 1. Trafiğe göre tahmini yolculuk süresini hesapla
+IF TrafikDurumu == "yoğun" THEN
+    YolculukSuresi ← NormalSure + EkSure
+ELSE
+    YolculukSuresi ← NormalSure
+ENDIF
+
+// 2. Şu anki dakikayı hesapla (örneğin 08:10 → 490. dakika)
+SuAnDakika ← (SaatKismi(SuAnSaat) × 60) + DakikaKismi(SuAnSaat)
+
+// 3. Derse kalan süreyi hesapla
+DersDakika ← (SaatKismi(DersSaati) × 60) + DakikaKismi(DersSaati)
+KalanSure ← DersDakika - SuAnDakika
+
+// 4. Otobüsün gelişine kaç dakika var?
+BeklemeSuresi ← OtobusAralik - (SuAnDakika % OtobusAralik)
+IF BeklemeSuresi == OtobusAralik THEN
+    BeklemeSuresi ← 0  // Otobüs tam şimdi gelmiş olabilir
+ENDIF
+
+// 5. Toplam süre = bekleme + yolculuk
+ToplamSure ← BeklemeSuresi + YolculukSuresi
+
+// 6. Gecikme kontrolü
+IF ToplamSure > KalanSure THEN
+    Gecikme ← ToplamSure - KalanSure
+    PRINT "Derse geç kalacaksın! Tahmini gecikme: ", Gecikme, " dakika"
+ELSE
+    PRINT "Zamanında yetişiyorsun."
+ENDIF
+
+PRINT "Bekleme süresi: ", BeklemeSuresi, " dakika"
+PRINT "Yolculuk süresi: ", YolculukSuresi, " dakika"
+PRINT "Toplam süre: ", ToplamSure, " dakika"
+
+END
+
+Gerçek Örnek: Hesaplama Adımları
+
+Saat: 08:10
+
+Ders: 09:00
+
+Trafik: yoğun
+
+Hesap:
+
+Trafik varsa yolculuk süresi = 45 + 15 = 60 dakika
+
+Otobüs 15 dakikada bir → 08:10 → 10 dakika geçti
+15 - (10 % 15) = 5 dakika sonra otobüs geliyor
+
+Toplam süre = 5 + 60 = 65 dakika
+
+Derse kalan süre = 50 dakika
+
+65 > 50 → 15 dakika geç kalırsın
+
+🔴 Ekrana şöyle yazılır:
+
+Derse geç kalacaksın! Tahmini gecikme: 15 dakika
+Bekleme süresi: 5 dakika
+Yolculuk süresi: 60 dakika
+Toplam süre: 65 dakika
+
+Evet! Hemen senin senaryona uygun, **trafik yoğunluğu** ve **gecikme durumu** da dikkate alınan bir **pseudocode (sözde kod)** yazalım.
+
+---
+
+## 🎯 Senaryo Özeti:
+
+* **Evden üniversiteye otobüsle gitmek normalde 45 dakika sürüyor.**
+* **Otobüs 15 dakikada bir geliyor.**
+* **Trafik yoğun olabilir, bu da yolculuk süresini uzatabilir.**
+* **Derse geç kalma riski varsa uyarı verilsin.**
+
+---
+
+## ✅ Girdi Bilgileri (Input):
+
+* Şu an saat kaç? (örneğin: 08:10)
+* Ders saati kaçta başlıyor? (örneğin: 09:00)
+* Trafik durumu:
+
+  * **"normal"** → 45 dakika sürer
+  * **"yoğun"** → +15 dakika eklenir → toplam **60 dakika** olur
+
+---
+
+## 🧠 Pseudocode
+
+```pseudocode
+ALGORITHM UniversiteyeOtobusleGit
+
+INPUT: SuAnSaat (saat:dakika formatında, örn: 08:10)
+       DersSaati (örn: 09:00)
+       TrafikDurumu ("normal" veya "yoğun")
+
+SABİT OtobusAralik ← 15  // Otobüs her 15 dakikada bir geliyor
+SABİT NormalSure ← 45    // Normal otobüs yolculuğu süresi
+SABİT EkSure ← 15        // Trafik yoğunsa eklenecek süre
+
+// 1. Trafiğe göre tahmini yolculuk süresini hesapla
+IF TrafikDurumu == "yoğun" THEN
+    YolculukSuresi ← NormalSure + EkSure
+ELSE
+    YolculukSuresi ← NormalSure
+ENDIF
+
+// 2. Şu anki dakikayı hesapla (örneğin 08:10 → 490. dakika)
+SuAnDakika ← (SaatKismi(SuAnSaat) × 60) + DakikaKismi(SuAnSaat)
+
+// 3. Derse kalan süreyi hesapla
+DersDakika ← (SaatKismi(DersSaati) × 60) + DakikaKismi(DersSaati)
+KalanSure ← DersDakika - SuAnDakika
+
+// 4. Otobüsün gelişine kaç dakika var?
+BeklemeSuresi ← OtobusAralik - (SuAnDakika % OtobusAralik)
+IF BeklemeSuresi == OtobusAralik THEN
+    BeklemeSuresi ← 0  // Otobüs tam şimdi gelmiş olabilir
+ENDIF
+
+// 5. Toplam süre = bekleme + yolculuk
+ToplamSure ← BeklemeSuresi + YolculukSuresi
+
+// 6. Gecikme kontrolü
+IF ToplamSure > KalanSure THEN
+    Gecikme ← ToplamSure - KalanSure
+    PRINT "Derse geç kalacaksın! Tahmini gecikme: ", Gecikme, " dakika"
+ELSE
+    PRINT "Zamanında yetişiyorsun."
+ENDIF
+
+PRINT "Bekleme süresi: ", BeklemeSuresi, " dakika"
+PRINT "Yolculuk süresi: ", YolculukSuresi, " dakika"
+PRINT "Toplam süre: ", ToplamSure, " dakika"
+
+END
+```
+
+---
+
+## 🎯 Gerçek Örnek: Hesaplama Adımları
+
+* Saat: **08:10**
+* Ders: **09:00**
+* Trafik: **yoğun**
+
+**Hesap:**
+
+* Trafik varsa yolculuk süresi = 45 + 15 = **60 dakika**
+* Otobüs 15 dakikada bir → 08:10 → 10 dakika geçti
+  `15 - (10 % 15) = 5 dakika` sonra otobüs geliyor
+* Toplam süre = 5 + 60 = **65 dakika**
+* Derse kalan süre = 50 dakika
+* 65 > 50 → **15 dakika geç kalırsın**
+
+🔴 Ekrana şöyle yazılır:
+
+```
+Derse geç kalacaksın! Tahmini gecikme: 15 dakika
+Bekleme süresi: 5 dakika
+Yolculuk süresi: 60 dakika
+Toplam süre: 65 dakika
+```
+
+---
+
+Bu pseudocode basit ama durumu iyi anlatıyor.
+
+İstersen bu algoritmayı:
+
+* ✅ Gerçek koda çevirebiliriz (Python, JavaScript vb.)
+* ✅ Alternatif ulaşım yollarını da ekleyebiliriz (yürümek gibi)
+* ✅ Daha gelişmiş (örneğin dinamik trafik bilgisi) hale getirebiliriz
+
+Hangisine geçmek istersin?
+
+Aynı durumda arabayla gitsek 20 dk daha kısa sürede üniversiteye ulaşırız.
+
+Harika! Şimdi senin senaryona araba seçeneğini de ekleyelim ve bakalım:
+
+Otobüsle mi?
+
+Arabayla mı?
+
+Hangisi daha hızlı?
+
+Hangisi zamanında derse yetiştiriyor?
+
+🧩 Yeni Bilgi:
+
+Arabayla gitmek, otobüsten 20 dakika daha kısa sürüyor
+
+Ama trafik hâlâ etkili (trafik varsa araba süresi de artabilir)
+
+GÜNCELLENMİŞ ALGORİTMA (Otobüs + Araba Karşılaştırmalı)
+ALGORITHM UniversiteyeGitmeYontemiKarsilastir
+
+INPUT: SuAnSaat (örnek: 08:10)
+       DersSaati (örnek: 09:00)
+       TrafikDurumu ("normal" veya "yoğun")
+
+SABİT OtobusAralik ← 15
+SABİT OtobusSuresiNormal ← 45
+SABİT EkSure ← 15         // Trafik yoğunluğu ek süresi
+SABİT ArabaAvantaji ← 20  // Araba, otobüsten 20 dk daha kısa sürer
+
+// 1. Dakikaya çevir
+SuAnDakika ← (SaatKismi(SuAnSaat) × 60) + DakikaKismi(SuAnSaat)
+DersDakika ← (SaatKismi(DersSaati) × 60) + DakikaKismi(DersSaati)
+KalanSure ← DersDakika - SuAnDakika
+
+// 2. Otobüs Süresini Hesapla
+IF TrafikDurumu == "yoğun" THEN
+    OtobusSuresi ← OtobusSuresiNormal + EkSure
+ELSE
+    OtobusSuresi ← OtobusSuresiNormal
+ENDIF
+
+BeklemeSuresi ← OtobusAralik - (SuAnDakika % OtobusAralik)
+IF BeklemeSuresi == OtobusAralik THEN
+    BeklemeSuresi ← 0
+ENDIF
+
+ToplamOtobusSure ← BeklemeSuresi + OtobusSuresi
+
+// 3. Araba Süresini Hesapla
+ArabaSuresi ← OtobusSuresi - ArabaAvantaji
+IF TrafikDurumu == "yoğun" THEN
+    ArabaSuresi ← ArabaSuresi + EkSure
+ENDIF
+
+// 4. Hangi yol zamanında yetiştiriyor?
+PRINT "----------------------"
+PRINT "OTOBÜS SEÇENEĞİ:"
+PRINT "Bekleme: ", BeklemeSuresi, " dakika"
+PRINT "Yolculuk: ", OtobusSuresi, " dakika"
+PRINT "Toplam süre: ", ToplamOtobusSure
+
+IF ToplamOtobusSure > KalanSure THEN
+    Gecikme ← ToplamOtobusSure - KalanSure
+    PRINT "Derse geç kalırsın. Gecikme: ", Gecikme, " dakika"
+ELSE
+    PRINT "Zamanında yetişiyorsun."
+ENDIF
+
+PRINT "----------------------"
+PRINT "ARABA SEÇENEĞİ:"
+PRINT "Yolculuk: ", ArabaSuresi, " dakika"
+
+IF ArabaSuresi > KalanSure THEN
+    Gecikme ← ArabaSuresi - KalanSure
+    PRINT "Derse geç kalırsın. Gecikme: ", Gecikme, " dakika"
+ELSE
+    PRINT "Zamanında yetişiyorsun."
+ENDIF
+
+// 5. Karşılaştırma ve öneri
+PRINT "----------------------"
+IF ArabaSuresi < ToplamOtobusSure THEN
+    PRINT "En hızlı yol: Araba"
+ELSE
+    PRINT "En hızlı yol: Otobüs"
+ENDIF
+
+END
+
+GERÇEK HAYAT ÖRNEĞİ
+
+Saat: 08:10
+
+Derse yetişmen gereken saat: 09:00
+
+Trafik durumu: yoğun
+
+Otobüs:
+
+Yolculuk: 45 + 15 = 60 dk
+
+Bekleme: 15 - (10 % 15) = 5 dk
+
+Toplam: 65 dakika
+
+Kalan süre: 50 dakika
+→ Geç kalırsın. 15 dk geç.
+
+Araba:
+
+Normalde: 45 - 20 = 25 dk
+
+Trafikte: 25 + 15 = 40 dk
+
+Kalan süre: 50 dakika
+→ Yetişiyorsun.
+
+✅ En hızlı ve güvenli yol: Araba
+
+🧠 Bu algoritma ne işe yarıyor?
+
+Otobüsle ve arabayla gitmeyi karşılaştırıyor
+
+Trafik durumuna göre süreleri ayarlıyor.
+
+Zamanında yetişip yetişmeyeceğini kontrol ediyor
+
+En hızlı yöntemi söylüyor
