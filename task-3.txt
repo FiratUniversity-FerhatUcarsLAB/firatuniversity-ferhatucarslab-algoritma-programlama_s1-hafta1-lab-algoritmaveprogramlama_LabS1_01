@@ -1,4 +1,358 @@
-Öğrenci No:
-AD-SOYAD:
+Öğrenci No:250542014
+AD-SOYAD:Yiğit Alper Ayhan
 
-Lütfen seçtiğiniz algoritmaya ait çözümü ve diğer isterleri aşağıya ekleyiniz:
+Market envanterini kategorilere ayırma için adım adım algoritma geliştirmek istiyorum. Koşullu durumları ve tekrar eden işlemleri de içeren detaylı bir pseudocode yazmama yardım eder misin?
+
+Elbette! Market envanterini kategorilere ayırmak için adım adım bir algoritma geliştirmek, oldukça mantıklı ve veri yönetimi açısından verimli bir yöntemdir. Aşağıda bu süreci detaylandıran, koşullu durumlar ve tekrar eden işlemleri (döngüler) içeren detaylı bir pseudocode örneği paylaşıyorum.
+
+🎯 Amaç:
+
+Market envanterindeki ürünleri belirli kategorilere (örneğin: Gıda, Temizlik, İçecek, Kişisel Bakım, vb.) ayırmak.
+
+🧠 Ön Koşullar:
+Her ürünün adı, barkodu, fiyatı ve kategori bilgisi olabilir.
+Eğer kategori bilgisi yoksa, ürün adı üzerinden kategori tahmini yapılabilir.
+Kategoriler daha önceden belirlenmiş olabilir veya kullanıcı tanımlayabilir.
+
+🪜 Pseudocode – Market Envanterini Kategorilere Ayırma
+BAŞLA
+
+// 1. Tanımlamalar
+KATEGORİLER = ["Gıda", "İçecek", "Temizlik", "Kişisel Bakım", "Ev Eşyası", "Diğer"]
+ENVANTER = ürün listesi (her ürün: {isim, barkod, fiyat, kategori})
+
+// 2. Kategorilere ayırma işlemi
+HER ürün İÇİN ENVANTER LİSTESİNDE:
+    EĞER ürün.kategori BOŞ DEĞİLSE:
+        // Kategori zaten atanmış
+        DEVAM ET
+    DEĞİLSE:
+        // Kategori boşsa tahmin et
+        ürün.kategori = kategori_tahmin_et(ürün.isim)
+
+        // Tahmin yapılamadıysa "Diğer" olarak ata
+        EĞER ürün.kategori BOŞSA:
+            ürün.kategori = "Diğer"
+
+// 3. Kategorilere göre gruplama
+KATEGORİYE_GÖRE_GRUPLAR = boş sözlük
+
+HER kategori İÇİN KATEGORİLER LİSTESİNDE:
+    KATEGORİYE_GÖRE_GRUPLAR[kategori] = boş liste
+
+HER ürün İÇİN ENVANTER LİSTESİNDE:
+    kategori = ürün.kategori
+    KATEGORİYE_GÖRE_GRUPLAR[kategori].EKLE(ürün)
+
+// 4. Sonuçları yazdır
+HER kategori, ürün_listesi ÇİFTİ İÇİN KATEGORİYE_GÖRE_GRUPLAR'DA:
+    EKRANA_YAZ("Kategori: " + kategori)
+    HER ürün İÇİN ürün_listesi:
+        EKRANA_YAZ(" - " + ürün.isim + ", Fiyat: " + ürün.fiyat)
+
+BİTİR
+
+// Fonksiyon: kategori_tahmin_et
+FONKSİYON kategori_tahmin_et(ürün_ismi):
+    ürün_ismi = ürün_ismi.KÜÇÜKHARF() // küçük harfe çevir
+    EĞER "süt" VEYA "yoğurt" VEYA "peynir" İÇERİYORSA:
+        DÖNDÜR "Gıda"
+    EĞER "şampuan" VEYA "sabun" VEYA "diş macunu" İÇERİYORSA:
+        DÖNDÜR "Kişisel Bakım"
+    EĞER "cola" VEYA "meyve suyu" VEYA "su" İÇERİYORSA:
+        DÖNDÜR "İçecek"
+    EĞER "deterjan" VEYA "çamaşır suyu" VEYA "temizleyici" İÇERİYORSA:
+        DÖNDÜR "Temizlik"
+    EĞER "tabak" VEYA "tencere" VEYA "bardak" İÇERİYORSA:
+        DÖNDÜR "Ev Eşyası"
+    DEĞİLSE:
+        DÖNDÜR "" // boş döner
+
+Elbette! Market envanterini kategorilere ayırmak için adım adım bir algoritma geliştirmek, oldukça mantıklı ve veri yönetimi açısından verimli bir yöntemdir. Aşağıda bu süreci detaylandıran, koşullu durumlar ve tekrar eden işlemleri (döngüler) içeren **detaylı bir pseudocode** örneği paylaşıyorum.
+
+---
+
+## 🎯 Amaç:
+
+Market envanterindeki ürünleri belirli **kategorilere** (örneğin: Gıda, Temizlik, İçecek, Kişisel Bakım, vb.) ayırmak.
+
+---
+
+## 🧠 Ön Koşullar:
+
+* Her ürünün adı, barkodu, fiyatı ve kategori bilgisi olabilir.
+* Eğer kategori bilgisi yoksa, ürün adı üzerinden kategori tahmini yapılabilir.
+* Kategoriler daha önceden belirlenmiş olabilir veya kullanıcı tanımlayabilir.
+
+---
+
+## 🪜 Pseudocode – Market Envanterini Kategorilere Ayırma
+
+```pseudocode
+BAŞLA
+
+// 1. Tanımlamalar
+KATEGORİLER = ["Gıda", "İçecek", "Temizlik", "Kişisel Bakım", "Ev Eşyası", "Diğer"]
+ENVANTER = ürün listesi (her ürün: {isim, barkod, fiyat, kategori})
+
+// 2. Kategorilere ayırma işlemi
+HER ürün İÇİN ENVANTER LİSTESİNDE:
+    EĞER ürün.kategori BOŞ DEĞİLSE:
+        // Kategori zaten atanmış
+        DEVAM ET
+    DEĞİLSE:
+        // Kategori boşsa tahmin et
+        ürün.kategori = kategori_tahmin_et(ürün.isim)
+
+        // Tahmin yapılamadıysa "Diğer" olarak ata
+        EĞER ürün.kategori BOŞSA:
+            ürün.kategori = "Diğer"
+
+// 3. Kategorilere göre gruplama
+KATEGORİYE_GÖRE_GRUPLAR = boş sözlük
+
+HER kategori İÇİN KATEGORİLER LİSTESİNDE:
+    KATEGORİYE_GÖRE_GRUPLAR[kategori] = boş liste
+
+HER ürün İÇİN ENVANTER LİSTESİNDE:
+    kategori = ürün.kategori
+    KATEGORİYE_GÖRE_GRUPLAR[kategori].EKLE(ürün)
+
+// 4. Sonuçları yazdır
+HER kategori, ürün_listesi ÇİFTİ İÇİN KATEGORİYE_GÖRE_GRUPLAR'DA:
+    EKRANA_YAZ("Kategori: " + kategori)
+    HER ürün İÇİN ürün_listesi:
+        EKRANA_YAZ(" - " + ürün.isim + ", Fiyat: " + ürün.fiyat)
+
+BİTİR
+
+// Fonksiyon: kategori_tahmin_et
+FONKSİYON kategori_tahmin_et(ürün_ismi):
+    ürün_ismi = ürün_ismi.KÜÇÜKHARF() // küçük harfe çevir
+    EĞER "süt" VEYA "yoğurt" VEYA "peynir" İÇERİYORSA:
+        DÖNDÜR "Gıda"
+    EĞER "şampuan" VEYA "sabun" VEYA "diş macunu" İÇERİYORSA:
+        DÖNDÜR "Kişisel Bakım"
+    EĞER "cola" VEYA "meyve suyu" VEYA "su" İÇERİYORSA:
+        DÖNDÜR "İçecek"
+    EĞER "deterjan" VEYA "çamaşır suyu" VEYA "temizleyici" İÇERİYORSA:
+        DÖNDÜR "Temizlik"
+    EĞER "tabak" VEYA "tencere" VEYA "bardak" İÇERİYORSA:
+        DÖNDÜR "Ev Eşyası"
+    DEĞİLSE:
+        DÖNDÜR "" // boş döner
+
+```
+
+---
+
+## 🔁 Notlar:
+
+* **Döngüler** ürünler üzerinde tekrarlı işlem yapmak için kullanıldı.
+* **Koşullar**, ürünün kategorisinin belirli olup olmadığını ve isimden kategori tahmini yapmak için kullanıldı.
+* `kategori_tahmin_et` fonksiyonu basit bir anahtar kelime eşleşmesine dayanıyor. Daha gelişmiş bir sistemde bu kısmı makine öğrenmesi modeline dönüştürebilirsin.
+
+---
+
+Eğer elinde örnek bir envanter verisi varsa, bu pseudocode’u Python veya başka bir dile çevirerek gerçek bir uygulama geliştirebiliriz. İstersen bu kısmı da birlikte yapabiliriz.
+
+// 3. Kategorilere göre gruplama KATEGORİYE\_GÖRE\_GRUPLAR = boş sözlük
+Neden buraya böyle bir şey yazdın?
+
+Güzel yakaladın! Şöyle açıklayayım:
+// 3. Kategorilere göre gruplama
+KATEGORİYE_GÖRE_GRUPLAR = boş sözlük
+
+Bu satırın amacı:
+Her kategoriyi bir anahtar (key) olarak kullanarak, o kategoriye ait ürünleri bir liste (value) olarak tutmak. Bu yapıya genelde "kategoriye göre gruplanmış ürün listesi" denir.
+
+Neden böyle bir şey yazdım?
+
+Çünkü:
+Envanter listesi düz bir listedir, içinde her kategoriden ürünler karışık şekilde yer alır.
+Biz bu ürünleri kategori bazlı olarak gruplamak istiyoruz. Yani:
+
+Gıda → [ürün1, ürün2, ürün5]
+Temizlik → [ürün3, ürün4]
+İçecek → [ürün6, ürün7]
+
+Güzel yakaladın! Şöyle açıklayayım:
+
+```pseudocode
+// 3. Kategorilere göre gruplama
+KATEGORİYE_GÖRE_GRUPLAR = boş sözlük
+```
+
+Bu satırın amacı:
+Her kategoriyi bir **anahtar (key)** olarak kullanarak, o kategoriye ait ürünleri bir **liste (value)** olarak tutmak. Bu yapıya genelde **"kategoriye göre gruplanmış ürün listesi"** denir.
+
+### Neden böyle bir şey yazdım?
+
+Çünkü:
+
+* Envanter listesi düz bir listedir, içinde her kategoriden ürünler karışık şekilde yer alır.
+
+* Biz bu ürünleri **kategori bazlı olarak gruplamak** istiyoruz. Yani:
+
+  ```plaintext
+  Gıda → [ürün1, ürün2, ürün5]
+  Temizlik → [ürün3, ürün4]
+  İçecek → [ürün6, ürün7]
+  ```
+
+* Bunun için bir **sözlük (dictionary / hashmap)** yapısı idealdir:
+
+  * **Anahtar (key):** Kategori adı (örneğin "Gıda")
+  * **Değer (value):** O kategoriye ait ürünlerden oluşan liste
+
+Bu sayede:
+
+* Her kategoriye ait ürünleri tek seferde erişebiliriz.
+* Raporlama, yazdırma veya analiz yapmak çok daha kolay olur.
+
+### Alternatif olur muydu?
+
+Evet, liste içinde liste gibi farklı yapılar da kullanılabilir ama sözlük yapısı:
+
+* Okunabilir,
+* Erişimi hızlı,
+* Ve gruplama açısından pratik
+
+olduğu için tercih edildi.
+
+---
+
+Eğer istersen bu yapının nasıl çalıştığını küçük bir örnekle (Python gibi) de gösterebilirim. İlgini çekerse hemen yapalım.
+
+Herhangi bir market envanterini kategoriye ayırırken çok vakit almaz mı?
+
+Çok yerinde bir soru — **"Market envanterini kategoriye ayırmak çok vakit almaz mı?"**
+Cevap: **Evet, ama nasıl yaptığınıza bağlı olarak değişir.**
+
+---
+
+## 🧠 Kategoriye Ayırma Süresi Neyi Belirler?
+
+### 1. **Envanter Boyutu**
+
+* **Küçük market (50–200 ürün):** Elle veya basit kurallarla kısa sürede ayrılır.
+* **Orta–büyük market (1000+ ürün):** Elle yapmak çok zaman alır.
+* **Zincir market (10.000+ ürün):** Manuel ayrım neredeyse imkânsız olur, otomasyon gerekir.
+
+---
+
+### 2. **Veri Kalitesi**
+
+* Eğer her ürün zaten kategori bilgisiyle kayıtlıysa (örneğin: Excel'de "kategori" sütunu varsa), **işlem çok hızlıdır.**
+* Ancak kategoriler eksikse ya da hatalıysa, o zaman:
+
+  * Ya elle düzeltirsin (zaman alır)
+  * Ya da akıllı algoritmalarla otomatik sınıflandırma yaparsın (ilk başta ayar zahmetli, ama sonra hızlı)
+
+---
+
+### 3. **Kullandığın Yöntem**
+
+| Yöntem                                | Süre                         | Açıklama                          |
+| ------------------------------------- | ---------------------------- | --------------------------------- |
+| Elle (manuel) ayırma                  | Uzun                         | Tek tek kontrol gerekir           |
+| Anahtar kelimeye göre otomatik ayırma | Orta                         | Basit ama etkili olabilir         |
+| Barkod sisteminden kategori çekme     | Hızlı                        | Entegrasyon varsa çok hızlıdır    |
+| Makine öğrenmesi ile sınıflandırma    | İlk başta uzun → sonra hızlı | Büyük veri için en verimli yoldur |
+
+---
+
+## ⏱ Gerçekçi Tahmin (Orta düzey envanter)
+
+| Yöntem                                      | 1000 Ürün   |
+| ------------------------------------------- | ----------- |
+| Manuel ayırma                               | 3–5 saat    |
+| Anahtar kelime kurallarıyla otomatik ayırma | 5–10 dakika |
+| Eğitimli model ile otomatik ayırma          | <1 dakika   |
+
+---
+
+## 🎯 Önerim Ne?
+
+* Eğer elinde **düzenli bir ürün listesi varsa**, otomasyonla ayırmak en mantıklısı.
+* Otomatik kategori tahmini için:
+
+  * Basit kurallar kullanabilirsin (örneğin ürün adında “süt” varsa = Gıda)
+  * Daha gelişmiş sistemler için: ürün adlarını eğitilmiş bir modele verip doğru kategoriyi tahmin ettirebilirsin.
+
+---
+
+İstersen örnek bir veri üzerinden birlikte deneyebiliriz — hem ne kadar süreceğini hem de verimliliği birlikte görmüş oluruz. Hazır bir ürün listesi var mı elinde?
+
+Bence ürünün anahtar kelimelerinden hangi market envanteri olduğunu anlayabiliriz.Bunu yaptıran bir pseudocode yazar mısın?
+
+Harika fikir!
+Gerçekten de, bir ürünün isminde geçen anahtar kelimeler, sadece kategorisini değil, hangi market envanterine ait olduğunu tahmin etmekte de kullanılabilir.
+
+Örneğin:
+“365 Gün Süt” → A101
+“Mis Yoğurt” → BİM
+“Pınar Süt” → Migros veya Şok
+“Lezita Nugget” → Migros
+“Dost Süt” → BİM
+“Eker Ayran” → Migros, A101
+“Yumoş Yumuşatıcı” → Tüm zincirlerde olabilir, ama bazen sadece Migros’ta bulunur
+
+🎯 Amaç:
+
+Bir ürünün adından yola çıkarak, hangi markete ait olabileceğini anahtar kelimelere göre tahmin eden bir algoritma (pseudocode) yazmak.
+
+✅ Varsayımlar:
+Elimizde ürün isimleri var.
+Bazı markalar veya ifadeler belli marketlerle özdeşleşmiş.
+Her ürün sadece bir veya birkaç marketle eşleşebilir.
+
+🪜 Pseudocode: Ürün İsmiyle Market Tahmini                                                      
+BAŞLA
+
+// 1. Market anahtar kelime eşleştirmeleri
+MARKET_ANAHTARLARI = {
+    "BİM": ["dost", "mis", "abin", "peros"],
+    "A101": ["365", "ahsap", "vernel", "milkten"],
+    "ŞOK": ["piyale", "mintax", "uno", "amigo"],
+    "Migros": ["pınar", "ekici", "lezita", "yumos", "migros", "kinder"],
+    "CarrefourSA": ["carrefour", "torku", "icim", "activia"]
+}
+
+// 2. Tahmin fonksiyonu
+FONKSİYON market_tahmin_et(ürün_ismi):
+    ürün_ismi = ürün_ismi.KÜÇÜKHARF() // küçük harfe çevir
+    eşleşen_marketler = boş liste
+
+    HER market, anahtar_listesi İÇİN MARKET_ANAHTARLARI:
+        HER kelime İÇİN anahtar_listesi:
+            EĞER kelime İÇERİYORSA ürün_ismi:
+                eşleşen_marketler.EKLE(market)
+                KIR // aynı marketten birden fazla eşleşmeye gerek yok
+
+    EĞER eşleşen_marketler BOŞSA:
+        DÖNDÜR ["Bilinmiyor"]
+    DEĞİLSE:
+        DÖNDÜR eşleşen_marketler
+
+// 3. Uygulama
+ÜRÜNLER = ["Dost Süt 1L", "Pınar Süt 1L", "365 Gün Yoğurt", "Yumoş Lavanta", "Mintax Çamaşır Suyu"]
+
+HER ürün İÇİN ÜRÜNLER:
+    marketler = market_tahmin_et(ürün)
+    EKRANA_YAZ("Ürün: " + ürün + " → Market(ler): " + marketler)
+
+BİTİR
+
+🔍 Örnek Çıktı:
+Ürün: Dost Süt 1L → Market(ler): ['BİM']
+Ürün: Pınar Süt 1L → Market(ler): ['Migros']
+Ürün: 365 Gün Yoğurt → Market(ler): ['A101']
+Ürün: Yumoş Lavanta → Market(ler): ['Migros']
+Ürün: Mintax Çamaşır Suyu → Market(ler): ['ŞOK']
+
+🧠 Geliştirme Fikirleri:
+Aynı ürün birden fazla markette varsa, skor verilebilir (örneğin eşleşme sayısına göre).
+Markaların satış politikalarına göre eşleşme listesi güncellenebilir.
+Kullanıcıdan ürün markası da ayrı olarak alınıp doğruluk artırılabilir.                                                      
+                                                      
