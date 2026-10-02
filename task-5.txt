@@ -1,4 +1,11 @@
-Öğrenci No:
-AD-SOYAD:
+Öğrenci No:260541082
+AD-SOYAD: BERRAK YAĞMUR ÖKSÜZ
 
 Lütfen seçtiğiniz algoritmaya ait çözümü ve diğer isterleri aşağıya ekleyiniz:
+public class UcMesaj {
+    public static void main(String[] args) {
+        System.out.println("BERRAK YAĞMUR ÖKSÜZ - Yazılım Mühendisliği");
+        System.out.println("Yazılıma ve teknolojiye olan ilgimden dolayı bu bölümü tercih ettim.");
+        System.out.println("1 Ekim");
+    }
+}
