@@ -1,4 +1,11 @@
-Öğrenci No:
-AD-SOYAD:
+Öğrenci No:260541082
+AD-SOYAD: BERRAK YAĞMUR ÖKSÜZ
 
 Lütfen seçtiğiniz algoritmaya ait çözümü ve diğer isterleri aşağıya ekleyiniz:
+public class CarpimTablosu {
+    public static void main(String[] args) {
+        for (int i = 1; i <= 10; i++) {
+            System.out.println("5 x " + i + " = " + (5 * i));
+        }
+    }
+}
