@@ -1,4 +1,13 @@
-Öğrenci No:
-AD-SOYAD:
+Öğrenci No:260541082
+AD-SOYAD: BERRAK YAĞMUR ÖKSÜZ
 
 Lütfen seçtiğiniz algoritmaya ait çözümü ve diğer isterleri aşağıya ekleyiniz:
+ublic class IsimKarti {
+    public static void main(String[] args) {
+        String kenar = "+ " + "-".repeat(19) + " +";
+        System.out.println(kenar);
+        System.out.println("| BERRAK YAĞMUR ÖKSÜZ |");
+        System.out.println("| Yazılım Müh. 1      |");
+        System.out.println(kenar);
+    }  
+}
